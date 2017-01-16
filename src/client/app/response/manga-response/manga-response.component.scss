@@ -1,0 +1,20 @@
+// Image in the card
+.card.horizontal .card-image img {
+  // Make sure it's always the full height of the card
+  height: 100%;
+}
+
+.card.horizontal {
+  background-color: lightcoral;
+  padding: 10px;
+}
+
+.card-stacked {
+  background-color: white;
+}
+
+// Abstract
+.abstract {
+  // Make it italic
+  font-style: italic;
+}

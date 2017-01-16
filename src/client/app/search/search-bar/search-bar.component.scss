@@ -1,0 +1,60 @@
+$bgColor: #c9f8ff;
+
+.searchbar {
+  padding-top: 250px;
+  margin: auto;
+  width: 60%;
+}
+
+.title {
+  text-align: center;
+  font-size: 50px;
+  font-family: "Verdana Pro Light", sans-serif;
+  padding-bottom: 5px;
+}
+
+.subTitle {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.comp {
+  background-color: lightgrey;;
+  border: 1px solid snow;
+  text-align: center;
+}
+
+.input {
+  background-color: $bgColor;
+  width: 80%;
+  margin: auto;
+  padding: -2px;
+  height: 2em;
+  border: 2px solid snow;
+}
+
+.button {
+  margin-top: 10px;
+  height: 2em;
+  padding: 0.3em;
+  background-color: #f9f6f9;
+  border-radius: 4px;
+  color: #535797;
+}
+
+.manga .anime .author {
+  border: 1px;
+  text-align: center;
+}
+
+.manga {
+  background-color: lightcoral;
+}
+
+.anime {
+  background-color: lightgreen;
+}
+
+.author {
+  background-color: lightgoldenrodyellow;
+}

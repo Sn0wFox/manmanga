@@ -1,0 +1,15 @@
+// Image in the card
+.card.horizontal .card-image img {
+  // Make sure it's always the full height of the card
+  height: 100%;
+
+}
+.card.horizontal {
+  padding: 10px;
+  background-color: #81c784;
+
+}
+
+.card-stacked {
+  background-color: white;
+}

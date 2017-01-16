@@ -1,0 +1,18 @@
+.row
+  .col.s12.m6
+    .card.horizontal
+      .card-image("*ngIf"="manga.coverUrl")
+        img(src="{{manga.coverUrl}}")
+      .card-stacked
+        .card-content
+          span.card-title {{manga.title}}
+          .author Author : {{manga.author.name}}
+          .illustrator("*ngIf"="manga.illustrator") Illustrator : {{manga.illustrator}}
+          .abstract("*ngIf"="manga.abstract") {{manga.abstract}}
+          .genres("*ngIf"="manga.genres") Genres:&nbsp;
+            span.genre("*ngFor"="let genre of manga.genres") {{genre}}&nbsp;
+          .volumes("*ngIf"="manga.volumes") Volumes : {{manga.volumes}}
+        .card-action
+          a(href="#") Read it online
+
+// NOTE about abstract: it could be very long, cut it off (css or js)

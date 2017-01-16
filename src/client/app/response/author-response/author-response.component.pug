@@ -1,0 +1,11 @@
+.row
+  .col.s12.m6
+    .card.horizontal
+      .card-stacked
+        .card-content
+          span.card-title {{author.name}}
+          .abstract("*ngIf"="author.abstract") Abstract : br {{author.abstract}}
+          .birthDate("*ngIf"="author.birthDate") born {{author.birthDate}}
+          .employer("*ngIf"="author.employer") House of edition : {{author.employer}}
+        .card-action
+          a(href="#") Wikipedia link ?

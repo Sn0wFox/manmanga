@@ -1,0 +1,56 @@
+#Tout récupérer sur un Manga
+select distinct ?p ?o  where {
+  values ?resource {dbr:Doraemon}.
+  ?resource rdf:type dbo:Manga.
+  ?resource ?p ?o.
+}
+
+#Tout récupérer sur un auteur
+select distinct ?p ?o   where {
+  values ?resource {dbr:Eiichiro_Oda}.
+  ?resource dbo:occupation ?o.
+}
+
+#Tout récupérer sur un auteur
+select distinct ?p ?o   where {
+  values ?resource {dbr:Eiichiro_Oda}.
+  ?manga dbo:author ?resource
+  ?manga a dbo:Manga
+  ?resource ?p ?o
+}
+
+
+
+---------------------------------------------------
+
+select distinct ?predicat ?objet where {
+       values ?character {dbr:Monkey_D._Luffy}.
+       ?character a dbo:FictionalCharacter.
+       ?character ?predicat ?objet.
+} LIMIT 100
+
+
+
+
+
+select distinct ?author where {
+      values ?resource {dbr:One_Piece}.
+      ?resource a dbo:Manga.
+      OPTIONAL {
+           ?resource dbo:author ?author.
+      }
+} 
+
+
+
+
+select distinct ?author ?volumes where {
+      values ?resource {dbr:One_Piece}.
+      ?resource a dbo:Manga.
+      OPTIONAL {
+           ?resource dbo:author ?author.
+      }
+      OPTIONAL {
+           ?resource dbo:numberOfVolumes ?volumes.
+      }
+} 

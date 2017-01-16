@@ -1,0 +1,13 @@
+body {
+  background-color: #6fc0e5;
+}
+
+$color: red;
+
+ol {
+  background-color: $color;
+
+  li {
+    background-color: $color;
+  }
+}
