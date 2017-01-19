@@ -1,6 +1,6 @@
 # Manmanga
 
-Awesome mangas and animes dedicated search engine.
+Awesome manga and anime dedicated search engine. This is the very beginninf of Manmanga, but there should be some alpha releases soon. Stay tuned!
 
 ## Run the project
 
@@ -8,7 +8,7 @@ Awesome mangas and animes dedicated search engine.
 
 - Ensure you have Node.js(https://nodejs.org/en/) installed (version 5+)
 - Ensure you have npm installed (version 3+)
-- `WINDOWS ONLY` run `npm install -g gulp-cli webpack webpack-dev-server typescript` to install global dependencies
+- Install global dependecies: run `npm install -g gulp-cli webpack webpack-dev-server typescript`
 
 ### Build and run
 
