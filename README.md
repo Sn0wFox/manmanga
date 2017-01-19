@@ -1,6 +1,6 @@
 # Manmanga
 
-Awesome manga and anime dedicated search engine. This is the very beginninf of Manmanga, but there should be some alpha releases soon. Stay tuned!
+Awesome manga and anime dedicated search engine. This is the very beginning of Manmanga, but there should be some alpha releases soon. Stay tuned!
 
 ## Run the project
 
