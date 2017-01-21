@@ -10,7 +10,7 @@ Awesome manga and anime dedicated search engine. This is the very beginning of M
 
 - Ensure you have Node.js(https://nodejs.org/en/) installed (version 5+)
 - Ensure you have npm installed (version 3+)
-- Install global dependecies: run `npm install -g gulp-cli webpack webpack-dev-server typescript karma-cli`
+- Install global dependencies: run `npm install -g gulp-cli webpack webpack-dev-server typescript karma-cli`
 
 ### Build and run
 
