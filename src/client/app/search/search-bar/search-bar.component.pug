@@ -1,29 +1,44 @@
-div(class="searchbar")
-  div(class="title") ManManga
-    .subTitle MOE !
-  div(class="comp")
-    div Search
+div.searchbar
+  div.title ManManga
+  div.comp
     div
-      input#search-field(class="input")
-    div
-      button#search-button(class="button" type="submit" value="Submit") envoyer
+      <Input #searchfield>
+      .buttonSend
+        button(class="waves-effect waves-light btn" "(click)"="onClick(searchfield.value)") envoyer
     div(class="sort")
       .row
         .manga
           .col.s4
-            .card(class="card red lighten-2")
+            .card.blue.darken-2
               .card-content
                 span.card-title Manga
-
+                <input type="checkbox" class="filled-in" id="testManga" checked="checked" #mangaFilter (change)="chgManga(mangaFilter.checked)" >
+                <label for="testManga"></label>
         .anime
           .col.s4
-            .card(class="card green lighten-2")
+            .card.green.lighten-2
               .card-content
                 span.card-title Anime
-
+                <input type="checkbox" class="filled-in" id="testAnime" checked="checked"  #animeFilter (change)="chgAnime(animeFilter.checked)">
+                <label for="testAnime"></label>
         .author
           .col.s4
-            .card(class="card teal lighten-2")
+            .card.teal.lighten-2
               .card-content
                 span.card-title Author
+                <input type="checkbox" class="filled-in" id="testAuthor" checked="checked" #authorFilter (change)="chgAuthor(authorFilter.checked)">
+                <label for="testAuthor"></label>
+.row
+  .mangasresponses("*ngIf"="mangaList")
+    .filter1("*ngIf"="mangaFilter")
+      .mangaresponse("*ngFor"="let manga of mangaList")
+        <mmg-manga-response [manga]="manga"></mmg-manga-response>
+  .animesresponses("*ngIf"="animeList")
+    .filter2("*ngIf"="animeFilter")
+      .animeresponse("*ngFor"="let anime of animeList")
+        <mmg-anime-response [anime]="anime"></mmg-anime-response>
+  .authorsresponses("*ngIf"="authorList")
+    .filter3("*ngIf"="authorFilter")
+      .authorresponse("*ngFor"="let author of authorList")
+        <mmg-author-response [author]="author"></mmg-author-response>
 

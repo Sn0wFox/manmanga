@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {Manga} from "../../../../lib/interfaces/manga.interface";
 
 const MANGATEST: Manga = {
@@ -18,12 +18,14 @@ const MANGATEST: Manga = {
   styleUrls: ["manga-response.component.scss"]
 })
 export class MangaComponent implements OnInit {
-  protected manga: Manga;
+  @Input() manga: Manga;
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log("Manga !");
-    this.manga = MANGATEST;
+    // console.log("Manga !");
+  }
+  setManga(manga: Manga): void {
+    this.manga = manga;
   }
 }

@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
+import {Author} from "../../../../lib/interfaces/author.interface";
 
 @Component({
   selector: "mmg-author-response",
@@ -7,11 +8,14 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ["author-response.component.scss"]
 })
 export class AuthorComponent implements OnInit {
-  name: string;
-  lastname: string;
-  works: string[];
+  @Input() author: Author;
 
   ngOnInit(): void {
     console.log("Author !");
   }
+
+  setAuthor(auth: Author): void {
+    this.author = auth;
+  }
+
 }
