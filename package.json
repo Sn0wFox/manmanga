@@ -1,7 +1,7 @@
 {
-  "name": "angular2-seed",
+  "name": "manmanga",
   "version": "1.0.0",
-  "description": "A simple starter Angular2 project",
+  "description": "Awesome search-engine dedicated to manga and anime",
   "scripts": {
     "deploy": "gulp all:clean && gulp all:build && node dist/server/main.js",
     "watch": "npm run build -- --watch",
@@ -11,10 +11,10 @@
     "test": "gulp all:test --continue"
   },
   "contributors": [
-    "Rob Wormald <robwormald@gmail.com>",
-    "PatrickJS <github@gdi2290.com>"
+    "Ruben 'Sn0wfox' Pericas-moya <ruben.pericas@gmail.com>",
+    "Hugo Moynac <https://github.com/HugoMoy>"
   ],
-  "license": "MIT",
+  "license": "MPL-2.0",
   "dependencies": {
     "@angular/common": "~2.2.1",
     "@angular/compiler": "~2.2.1",
@@ -90,17 +90,18 @@
     "webpack-stream": "^3.2.0"
   },
   "keywords": [
-    "Angular2",
-    "angular2-seed",
-    "official angular 2 seed",
-    "official angular2 seed"
+    "manmanga",
+    "search-engine",
+    "manga",
+    "anime",
+    "semantic-web"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angular/angular2-seed.git"
+    "url": "git+https://github.com/Sn0wFox/manmanga.git"
   },
   "bugs": {
-    "url": "https://github.com/angular/angular2-seed/issues"
+    "url": "https://github.com/Sn0wFox/manmanga/issues"
   },
-  "homepage": "https://github.com/angular/angular2-seed#readme"
+  "homepage": "https://github.com/Sn0wFox/manmanga#readme"
 }
