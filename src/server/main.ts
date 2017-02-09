@@ -12,7 +12,7 @@ import mainRouter from "./routes/server.main-router";
 
 const app: any = express();
 
-console.log(path.resolve(__dirname + "/.."));
+// console.log(path.resolve(__dirname + "/.."));
 
 //app.use(express.static(path.resolve(__dirname + "/../client")));
 
@@ -25,8 +25,8 @@ app.get("/api/tralala", (req: any, res: any, next: any) => {
       res.status(200).send(hello);
     })
     .catch((err: Error) => {
-      console.log("ERR");
-      console.log(err);
+      // console.log("ERR");
+      // console.log(err);
     });
 });
 
@@ -45,5 +45,5 @@ app.use(mainRouter);
 
 // Start the server
 app.listen(app.get('port'), function() {
-  console.log('Express server started at http://localhost:' + app.get('port'));
+  // console.log('Express server started at http://localhost:' + app.get('port'));
 });

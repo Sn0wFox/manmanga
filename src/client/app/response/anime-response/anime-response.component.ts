@@ -15,7 +15,7 @@ export class AnimeComponent implements OnInit {
   @Input() anime: Anime;
 
   ngOnInit(): void {
-    console.log("Anime !");
+    // console.log("Anime !");
   }
 
   setAnime(anime: Anime): void {

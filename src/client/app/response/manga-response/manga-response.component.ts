@@ -23,7 +23,7 @@ export class MangaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // console.log("Manga !");
+    // // console.log("Manga !");
   }
   setManga(manga: Manga): void {
     this.manga = manga;

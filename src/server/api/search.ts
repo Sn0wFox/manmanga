@@ -15,16 +15,16 @@ import * as Indexden from "indexden-client";
  * @returns {Promise<string[]>}
  */
 export async function search (query: string): Promise<string[]> {
-  console.log("QUERYING...");
+  // console.log("QUERYING...");
   const searchResults: googlesearch.SearchResult[] = await googlesearch.search({query: query});
-  console.log(searchResults);
-  console.log("ALCHEMYING...");
+  // console.log(searchResults);
+  // console.log("ALCHEMYING...");
   // TODO: handle empty array
   const alchemyResult: alchemy.Result = await alchemy.getTextFromURL(searchResults[0].link);
-  console.log(alchemyResult);
-  console.log("SPOTLIGHTING...");
+  // console.log(alchemyResult);
+  // console.log("SPOTLIGHTING...");
   const spotlightResult: string[] = await spotlight.query(alchemyResult.text, alchemyResult.language);
-  console.log(spotlightResult);
+  // console.log(spotlightResult);
   return spotlightResult;
 }
 
@@ -35,13 +35,13 @@ export async function search2 (query: string): Promise<DBPedia.SearchResult[]> {
   // TODO: use function to build query
   const googlesearchQuery: string = `${query} manga OR anime site:en.wikipedia.org`;
   const searchResults: googlesearch.SearchResult[] = await googlesearch.search({query: googlesearchQuery});
-  console.log("Google results");
-  console.log(searchResults);
+  // console.log("Google results");
+  // console.log(searchResults);
   return Promise.all(searchResults
     .slice(0, 3)
     .map(async (searchResult: googlesearch.SearchResult): Promise<DBPedia.SearchResult> => {
       const url: string = searchResult.link;
-      console.log(`dbpedia search for ${url}`);
+      // console.log(`dbpedia search for ${url}`);
       const dbpediaResult: DBPedia.SearchResult = await DBPedia.search(DBPedia.wikipediaArticleUrlToResourceUrl(url));
       if (dbpediaResult && dbpediaResult.manga !== undefined) {
         const manga: Manga = dbpediaResult.manga;
@@ -54,8 +54,8 @@ export async function search2 (query: string): Promise<DBPedia.SearchResult[]> {
           // TODO: try to get something with anilist ?
         }
       }
-      console.log("DBPedia result, maybe with cover");
-      console.log(dbpediaResult);
+      // console.log("DBPedia result, maybe with cover");
+      // console.log(dbpediaResult);
       return dbpediaResult;
     }));
 }

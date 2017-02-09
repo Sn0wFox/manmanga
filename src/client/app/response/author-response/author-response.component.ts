@@ -11,7 +11,7 @@ export class AuthorComponent implements OnInit {
   @Input() author: Author;
 
   ngOnInit(): void {
-    console.log("Author !");
+    // console.log("Author !");
   }
 
   setAuthor(auth: Author): void {

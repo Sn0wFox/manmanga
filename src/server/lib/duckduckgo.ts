@@ -216,7 +216,7 @@ if (runExample) {
   query("Goku", null)
     .then(
       (result) => {
-        console.log(result);
+        // console.log(result);
       },
       (err) => {
         console.error(err);

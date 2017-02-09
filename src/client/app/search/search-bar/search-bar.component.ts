@@ -52,8 +52,8 @@ export class SearchBarComponent implements OnInit {
     this.apiService
       .search(query)
       .then((results: SearchResults) => {
-        console.log("RESULTS RECEIVED:");
-        console.log(results);
+        // console.log("RESULTS RECEIVED:");
+        // console.log(results);
         this.results=results;
       });
   }
