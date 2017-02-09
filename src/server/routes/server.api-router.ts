@@ -43,6 +43,19 @@ apiRouter.get("/api/pipeline2/:query", async (req: any, res: Response) => {
 });
 
 /**
+ * A test pipeline using our own indexing.
+ */
+apiRouter.get("/api/pipeline3/:query", async (req: any, res: Response) => {
+  try {
+    const query: string = req.params["query"];
+    const result: DBPedia.SearchResult[] = await manmangaApi.search3(query);
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({error: {name: err.name, stack: err.stack}});
+  }
+});
+
+/**
  * Register sub-routers.
  */
 apiRouter.use("/api", manmangaApiRouter);

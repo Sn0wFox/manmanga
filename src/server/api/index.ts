@@ -1,1 +1,1 @@
-export {search, search2} from "./search";
+export {search, search2, search3} from "./search";
