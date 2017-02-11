@@ -1,20 +1,20 @@
-"use strict"
+"use strict";
 
-const gulp = require('gulp');                     // Local gulp lib
-const gutil = require('gulp-util');               // To add some logs
-const gpug = require('gulp-pug');                 // To support pug compile
-const gsass = require('gulp-sass');               // To support scss and sass compile
-const gjasmine = require('gulp-jasmine');         // To build and run tests
-const typescript = require('gulp-typescript');    // To make gulp work with TypeScript compiler
-const sourcemaps = require('gulp-sourcemaps');    // To produce .map.js files while compiling
-const webpack = require('webpack');               // Local webpack lib
-const gwebpack = require('webpack-stream');       // To use webpack with gulp
-const del = require('del');                       // To erase some file during cleaning tasks
-const karma = require('karma');                   // To run server side tests
+const gulp        = require('gulp');              // Local gulp lib
+const gutil       = require('gulp-util');         // To add some logs
+const gpug        = require('gulp-pug');          // To support pug compile
+const gsass       = require('gulp-sass');         // To support scss and sass compile
+const gjasmine    = require('gulp-jasmine');      // To build and run tests
+const typescript  = require('gulp-typescript');   // To make gulp work with TypeScript compiler
+const sourcemaps  = require('gulp-sourcemaps');   // To produce .map.js files while compiling
+const webpack     = require('webpack');           // Local webpack lib
+const gwebpack    = require('webpack-stream');    // To use webpack with gulp
+const del         = require('del');               // To erase some file during cleaning tasks
+const karma       = require('karma');             // To run server side tests
 
 // TODO: separate this config
-const tscConfig = require('./tsconfig.json');     // Gather the options for TypeScript compiler
-const wpconf = require('./webpack.config.js');
+const tscConfig   = require('./tsconfig.json');   // Gather the options for TypeScript compiler
+const wpconf      = require('./webpack.config.js');
 
 
 /* BASIC TASKS */
@@ -28,7 +28,7 @@ const wpconf = require('./webpack.config.js');
  */
 gulp.task('lib:build:ts', () => {
   return gulp
-    .src(['src/lib/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
+    .src(['!src/lib/**/*.spec.ts', 'src/lib/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
@@ -48,7 +48,7 @@ gulp.task('lib:clean', () => {
  * needed to run lib tests.
  */
 gulp.task('lib:test:build', () => {
-  return gulp.src("src/lib/**/*.spec.ts")
+  return gulp.src('src/lib/**/*.spec.ts')
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(gulp.dest('dist/lib'));
 });
@@ -57,7 +57,7 @@ gulp.task('lib:test:build', () => {
  * Runs all files .spec.js for the lib,
  * aka lib tests.
  */
-gulp.task('lib:test:run', (done) => {
+gulp.task('lib:test:run', () => {
   return gulp.src('dist/lib/**/*.spec.js')
     .pipe(gjasmine());
 });
@@ -80,7 +80,7 @@ gulp.task('lib:test:clean', () => {
  */
 gulp.task('server:build:ts', () => {
   return gulp
-    .src(['src/server/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts', '!src/server/**/*.spec.ts'])
+    .src(['!src/server/**/*.spec.ts', 'src/server/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
@@ -100,7 +100,7 @@ gulp.task('server:clean', () => {
  * needed to run server-side tests.
  */
 gulp.task('server:test:build', () => {
-  return gulp.src("src/server/**/*.spec.ts")
+  return gulp.src('src/server/**/*.spec.ts')
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(gulp.dest('dist/server'));
 });
@@ -109,7 +109,7 @@ gulp.task('server:test:build', () => {
  * Runs all files .spec.js server side,
  * aka server side tests.
  */
-gulp.task('server:test:run', (done) => {
+gulp.task('server:test:run', () => {
   return gulp.src('dist/server/**/*.spec.js')
     .pipe(gjasmine());
 });
@@ -191,7 +191,7 @@ gulp.task('client:build:static', () => {
 
 /**
  * Single runs client-side tests.
- * NOTE: Forefox browser needs to be installed !
+ * NOTE: Firefox browser needs to be installed !
  */
 gulp.task('client:test', (done) => {
   return (new karma.Server({
@@ -201,6 +201,27 @@ gulp.task('client:test', (done) => {
   }, () => {
     done();   // If only passing "done", the --continue flag makes it fail
   })).start();
+});
+
+
+/* watchers */
+
+
+/**
+ * Watch all client files and rebuild them when needed.
+ */
+gulp.task('client:watch', () => {
+  gulp.watch(['src/client/*.scss', 'src/client/**/*.sass'], gulp.series('client:build:sass'));
+  gulp.watch(['src/client/*.pug'], gulp.series('client:build:pug'));
+  gulp.watch(['src/client/*.html', 'src/client/*.css'], gulp.series('client:build:htmlcss'));
+  gulp.watch(['src/static/*'], gulp.series('client:build:static'));
+  gulp.watch([
+    'src/client/*/**.ts',
+    'src/lib/*/**.ts',
+    'src/client/*/**.pug',
+    'src/client/*/**.scss',
+    'src/client/*/**.sass'],
+    gulp.series('client:build:webpack'));
 });
 
 
