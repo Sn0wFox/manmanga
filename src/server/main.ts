@@ -44,6 +44,6 @@ app.use(apiRouter);
 app.use(mainRouter);
 
 // Start the server
-app.listen(app.get('port'), function() {
-  // console.log('Express server started at http://localhost:' + app.get('port'));
+app.listen(app.get('port'), () => {
+  console.log('Express server started at http://localhost:' + app.get('port'));
 });
