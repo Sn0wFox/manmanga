@@ -4,10 +4,7 @@
   "description": "Awesome search-engine dedicated to manga and anime",
   "scripts": {
     "deploy": "gulp all:clean && gulp all:build && node dist/server/main.js",
-    "watch": "npm run build -- --watch",
-    "server": "webpack-dev-server --inline --progress --port 3000 --content-base src",
-    "build:client": "gulp log:deprecated && webpack --progress",
-    "start": "npm run server",
+    "start": "npm run deploy",
     "test": "gulp all:test --continue"
   },
   "contributors": [
