@@ -1,13 +1,31 @@
-body {
-  background-color: #6fc0e5;
+@import './common/common';
+
+/******* DEFAULT CORE *******/
+html, body {
+  background-color: $color-primary;
 }
 
-$color: red;
+/******* DEFAULT SPINNER *******/
+.mmg-preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
+.mmg-spinner {
+  border-color: $color-secondary-darker;
+}
+
+/******* DEFAULT OTHERS *******/
 ol {
-  background-color: $color;
+  background-color: $color-accent;
 
   li {
-    background-color: $color;
+    background-color: $color-accent;
   }
 }

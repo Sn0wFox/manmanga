@@ -10,5 +10,15 @@ html
     link(href="index.css", rel="stylesheet" type="text/css")
     base(href="/")
   body
-    mmg-app Loading...
+    mmg-app
+      .mmg-preloader
+        .preloader-wrapper.big.active
+          .spinner-layer.mmg-spinner
+            .circle-clipper.left
+              .circle
+            .gap-patch
+              .circle
+            .circle-clipper.right
+              .circle
+
     script(async src="/main.bundle.js")
