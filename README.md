@@ -50,6 +50,22 @@ gulp server:test
 gulp client:test
 ```
 
+## Dev
+
+### Watch and rebuild
+When working on the client, you can use the task:
+
+```shell
+gulp client:watch
+```
+
+which will automatically watch for changes client side, and rebuild associated files.
+
+### Use our own index
+To use API calls that are calling our own index, you must set an environment
+variable `INDEXDEN_ENDPOINT` to the right URL to our indexden server,
+otherwise calls won't work.
+
 ## Dev Notes
 
 ### Voice actors
