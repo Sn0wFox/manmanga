@@ -1,20 +1,22 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import * as cookieParser from "cookie-parser";
-import * as morgan from "morgan";
+import * as express       from 'express';
+import * as bodyParser    from 'body-parser';
+import * as cookieParser  from 'cookie-parser';
+import * as morgan        from 'morgan';
 
-import apiRouter from "./routes/server.api-router";
-import mainRouter from "./routes/server.main-router";
+import apiRouter  from './routes/server.api-router';
+import mainRouter from './routes/server.main-router';
 
+// Create server app
 const app: any = express();
 
+// Configure server app
 app.set('port', process.env.PORT || 3000);
 
 // Log the requests
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // Configure the server to parse body
-app.use(cookieParser("ManManGa awesome app!"));
+app.use(cookieParser('ManManGa awesome app!'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 

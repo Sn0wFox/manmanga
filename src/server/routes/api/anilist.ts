@@ -1,9 +1,13 @@
-import {Request, Response, Router} from "express";
-import {Character} from "../../../lib/interfaces/character.interface";
-import {AnilistApi} from "../../lib/anilist-api.class";
-import * as Anilist from "../../lib/anilist-api.interfaces";
+import {  Request,
+          Response, 
+          Router} from 'express';
 
-export const anilistApiRouter: Router = Router();
+import * as Anilist   from '../../lib/anilist-api.interfaces';
+import { Character }  from '../../../lib/interfaces/character.interface';
+import { AnilistApi } from '../../lib/anilist-api.class';
+
+
+const anilistApiRouter: Router = Router();
 
 /**
  * The object managing Anilist's API calls.
@@ -18,9 +22,9 @@ const anilistApi: AnilistApi = new AnilistApi();
  * according to anilist.
  * Meant to research a character with a precise name.
  */
-anilistApiRouter.get("/character/:name", async function (req: Request, res: Response) {
+anilistApiRouter.get('/character/:name', async (req: Request, res: Response) => {
   try {
-    const characterName: string = req.params["name"];
+    const characterName: string = req.params['name'];
     const character: Character = await anilistApi.getCharacter(characterName);
     res.status(200).json(character);
   } catch (err) {
@@ -36,9 +40,9 @@ anilistApiRouter.get("/character/:name", async function (req: Request, res: Resp
  * Gather the list of all mangas with a title matching the given keywords,
  * according to anilist.
  */
-anilistApiRouter.get("/search/manga/:keywords", async function (req: Request, res: Response) {
+anilistApiRouter.get('/search/manga/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Manga = await anilistApi.searchManga(req.params["keywords"]);
+    const result: Anilist.Manga = await anilistApi.searchManga(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -53,9 +57,9 @@ anilistApiRouter.get("/search/manga/:keywords", async function (req: Request, re
  * Gather the list of all animes with a title matching the given keywords,
  * according to anilist.
  */
-anilistApiRouter.get("/search/anime/:keywords", async function (req: Request, res: Response) {
+anilistApiRouter.get('/search/anime/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Anime = await anilistApi.searchAnime(req.params["keywords"]);
+    const result: Anilist.Anime = await anilistApi.searchAnime(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -70,10 +74,10 @@ anilistApiRouter.get("/search/anime/:keywords", async function (req: Request, re
  * Gather the list of all characters with a name matching the given keywords,
  * according to anilist.
  */
-// TODO: return a single character or rename to "characters"
-anilistApiRouter.get("/search/character/:keywords", async function (req: Request, res: Response) {
+// TODO: return a single character or rename to 'characters'
+anilistApiRouter.get('/search/character/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Character[] = await anilistApi.searchCharacter(req.params["keywords"]);
+    const result: Character[] = await anilistApi.searchCharacter(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -88,9 +92,9 @@ anilistApiRouter.get("/search/character/:keywords", async function (req: Request
  * Gather the list of all staff members with a name matching the given keywords,
  * according to anilist.
  */
-anilistApiRouter.get("/search/staff/:keywords", async function (req: Request, res: Response) {
+anilistApiRouter.get('/search/staff/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Staff = await anilistApi.searchStaff(req.params["keywords"]);
+    const result: Anilist.Staff = await anilistApi.searchStaff(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -105,9 +109,9 @@ anilistApiRouter.get("/search/staff/:keywords", async function (req: Request, re
  * Gather the list of all studios with a name matching the given keywords,
  * according to anilist.
  */
-anilistApiRouter.get("/search/studio/:keywords", async function (req: Request, res: Response) {
+anilistApiRouter.get('/search/studio/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Studio = await anilistApi.searchStudio(req.params["keywords"]);
+    const result: Anilist.Studio = await anilistApi.searchStudio(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
