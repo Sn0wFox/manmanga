@@ -6,6 +6,7 @@ import { HttpModule }     from '@angular/http';
 
 // Angular2 custom modules
 import { AppRoutingModule } from './app-routing.module';
+import { SearchModule }     from './search/search.module';
 
 // Components for this module
 import { AppComponent }     from './app.component';
@@ -15,11 +16,12 @@ import { AppComponent }     from './app.component';
     AppComponent
   ],
   imports: [
-    // NOTE: Dynamically loaded modules don't need to appear here
+    // NOTES: Lazily loaded modules don't need to appear here
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SearchModule      // Eagerly loaded (on start) because default module to show
   ],
   exports: [
     AppRoutingModule
