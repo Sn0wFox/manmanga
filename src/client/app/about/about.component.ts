@@ -1,10 +1,9 @@
-import {Component} from "@angular/core";
+import { Component }  from '@angular/core';
 
 @Component({
-  selector: "about",
-  moduleId: "about/about.component",
-  templateUrl: "about.component.pug",
-  styleUrls: ["about.component.scss"]
+  selector: 'mmg-about',
+  templateUrl: 'about.component.pug',
+  styleUrls: ['about.component.scss']
 })
 export class AboutComponent {
 }
