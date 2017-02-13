@@ -1,18 +1,20 @@
-import "rxjs/add/operator/toPromise";
+import 'rxjs/add/operator/toPromise';
 
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import * as Bluebird  from "bluebird";
-import {Anime} from "../../../../lib/interfaces/anime.interface";
-import {Author} from "../../../../lib/interfaces/author.interface";
-import {Character} from "../../../../lib/interfaces/character.interface";
-import {Manga} from "../../../../lib/interfaces/manga.interface";
-import {SearchResults} from "../../../../lib/interfaces/search-result.interface";
+import * as Bluebird  from 'bluebird';
+import * as url       from 'url';
 
-const serverUrl: string = "http://localhost:3000";
-const apiBaseUrl: string = serverUrl + "/api";
+import { Injectable } from '@angular/core';
+import { Http }       from '@angular/http';
 
-import * as url from "url";
+import { Anime }          from '../../../../lib/interfaces/anime.interface';
+import { Author }         from '../../../../lib/interfaces/author.interface';
+import { Character }      from '../../../../lib/interfaces/character.interface';
+import { Manga }          from '../../../../lib/interfaces/manga.interface';
+import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
+
+// TODO: use url abstraction + encode it + put it as env variable or something to distinguish dev and prod
+const serverUrl: string   = 'http://localhost:3000';
+const apiBaseUrl: string  = serverUrl + '/api';
 
 @Injectable()
 export class ApiService {
@@ -51,7 +53,7 @@ export class ApiService {
    * Returns the wanted manga,
    * or a Promise rejection if there was a problem with the request
    * (or if no manga could be found).
-   * @param name The manga"s name.
+   * @param name The manga's name.
    */
   public getManga(name: string): Bluebird<Manga> {
     return Bluebird

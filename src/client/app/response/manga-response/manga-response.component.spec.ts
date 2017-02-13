@@ -1,4 +1,4 @@
-import {MangaComponent} from './manga-response.component';
+import { MangaComponent } from './manga-response.component';
 
 describe("MangaResponseComponent", () => {
   it("should be an easy test", () => {

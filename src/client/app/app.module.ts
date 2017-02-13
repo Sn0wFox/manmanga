@@ -1,12 +1,10 @@
 // Angular2 native modules
-import { NgModule }           from '@angular/core'
-import { FormsModule,
-        ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule }      from '@angular/platform-browser';
-import { HttpModule }         from '@angular/http';
+import { NgModule }       from '@angular/core'
+import { FormsModule }    from '@angular/forms';
+import { BrowserModule }  from '@angular/platform-browser';
+import { HttpModule }     from '@angular/http';
 
 // Angular2 custom modules
-import { ResponseModule }   from './response/response.module';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components for this module
@@ -18,15 +16,12 @@ import { AppComponent }     from './app.component';
   ],
   imports: [
     // NOTE: Dynamically loaded modules don't need to appear here
-    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
-    ResponseModule
+    AppRoutingModule
   ],
   exports: [
-    ResponseModule,
     AppRoutingModule
   ],
   bootstrap: [ AppComponent ]

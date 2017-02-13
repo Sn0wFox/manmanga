@@ -1,20 +1,17 @@
-import {Component, OnInit} from "@angular/core";
-import {SearchResults} from "../../../../lib/interfaces/search-result.interface";
-import {SearchResult} from "../../../../lib/interfaces/search-result.interface";
-import {ApiService} from "../services/api.service";
-import { Anime } from "../../../../lib/interfaces/anime.interface";
-import { Author } from "../../../../lib/interfaces/author.interface";
-import { Manga } from "../../../../lib/interfaces/manga.interface";
-import { Character } from "../../../../lib/interfaces/character.interface";
-import {AnimeComponent} from "../../response/anime-response/anime-response.component";
-import {AuthorComponent} from "../../response/author-response/author-response.component";
-import {MangaComponent} from "../../response/manga-response/manga-response.component";
+import { Component, OnInit }  from '@angular/core';
+
+import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
+import { SearchResult }   from '../../../../lib/interfaces/search-result.interface';
+import { Anime }          from '../../../../lib/interfaces/anime.interface';
+import { Author }         from '../../../../lib/interfaces/author.interface';
+import { Manga }          from '../../../../lib/interfaces/manga.interface';
+import { Character }      from '../../../../lib/interfaces/character.interface';
+import { ApiService }     from '../services/api.service';
 
 @Component({
-  selector: "mmg-search",
-  moduleId: "search/search-bar/search-bar.component",
-  templateUrl: "search-bar.component.pug",
-  styleUrls: ["search-bar.component.scss"]
+  selector: 'mmg-search',
+  templateUrl: 'search-bar.component.pug',
+  styleUrls: ['search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
   private apiService: ApiService;
@@ -32,7 +29,6 @@ export class SearchBarComponent implements OnInit {
    * Properly initialize component.
    */
   ngOnInit(): void {
-    // Nothing to do for the moment
     this.mangaList = [];
     this.authorList = [];
     this.animeList = [];
@@ -52,7 +48,7 @@ export class SearchBarComponent implements OnInit {
     this.apiService
       .search(query)
       .then((results: SearchResults) => {
-        // console.log("RESULTS RECEIVED:");
+        // console.log('RESULTS RECEIVED:');
         // console.log(results);
         this.results=results;
       });

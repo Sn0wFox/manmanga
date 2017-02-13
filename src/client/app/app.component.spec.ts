@@ -1,4 +1,4 @@
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
 
 describe("AppComponent", () => {
   it("should be an easy test", () => {

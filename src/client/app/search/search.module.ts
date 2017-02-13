@@ -17,10 +17,8 @@ import { ApiService }           from './services/api.service';
   ],
   declarations: [
     SearchBarComponent
-  ],
-  exports: [
-    SearchBarComponent
   ]
 })
 export class SearchModule {
+  // Nothing else to do
 }
