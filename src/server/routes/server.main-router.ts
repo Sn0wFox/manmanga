@@ -11,8 +11,10 @@ mainRouter.use(express.static(baseFolder));
 function handleAngularRoutes(req: express.Request, res: express.Response) {
   res.status(200).sendFile('index.html', { root: baseFolder });
 }
-mainRouter.get('/about', handleAngularRoutes);
 mainRouter.get('/home', handleAngularRoutes);
+mainRouter.get('/about', handleAngularRoutes);
+mainRouter.get('/contact', handleAngularRoutes);
+mainRouter.get('/search', handleAngularRoutes);
 
 // Serve a custom 404 page in case of an unknown route
 mainRouter.all('*', (req: express.Request, res: express.Response) => {

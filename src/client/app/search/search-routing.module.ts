@@ -5,7 +5,7 @@ import {SearchBarComponent} from "./search-bar/search-bar.component";
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {path: "search", component: SearchBarComponent}
+      {path: '', component: SearchBarComponent}
     ])
   ],
   exports: [

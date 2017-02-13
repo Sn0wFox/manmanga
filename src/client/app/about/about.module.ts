@@ -1,6 +1,7 @@
-import {NgModule} from "@angular/core";
-import {AboutRoutingModule} from "./about-routing.module";
-import {AboutComponent} from "./about.component";
+import { NgModule }           from '@angular/core';
+
+import { AboutRoutingModule } from './about-routing.module';
+import { AboutComponent }     from './about.component';
 
 @NgModule({
   imports: [
@@ -11,4 +12,5 @@ import {AboutComponent} from "./about.component";
   ]
 })
 export class AboutModule {
+  // Nothing else to do
 }
