@@ -1,11 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { ContactComponent } from './contact/contact.component';
-
 export const rootRouterConfig: Routes = [
   { path: 'home', loadChildren: './search/search.module#SearchModule' },  // Lazy loaded module
   { path: 'about', loadChildren: './about/about.module#AboutModule' },    // Lazy loaded module
-  { path: 'contact', component: ContactComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

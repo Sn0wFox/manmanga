@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
-import {SearchBarComponent} from "./search-bar/search-bar.component";
+import { NgModule }           from '@angular/core';
+import { RouterModule }       from '@angular/router';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   imports: [
