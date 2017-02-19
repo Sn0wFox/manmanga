@@ -143,11 +143,20 @@ gulp.task('client:build:webpack', () => {
 gulp.task('client:build:materialize', () => {
   return gulp
     .src([
-      'node_modules/materialize-css/dist/css/materialize.css',
-      'node_modules/materialize-css/dist/js/materialize.js',
+      'node_modules/materialize-css/dist/css/materialize.min.css',
+      'node_modules/materialize-css/dist/js/materialize.min.js',
       'node_modules/materialize-css/dist/fonts/**/*'
     ], { base: 'node_modules/materialize-css/dist/' })
     .pipe(gulp.dest('dist/client/static'));
+});
+
+/**
+ * Copies jquery files from node_modules.
+ */
+gulp.task('client:build:jquery', () => {
+  return gulp
+    .src(['node_modules/jquery/dist/jquery.min.js',])
+    .pipe(gulp.dest('dist/client/static/js'));
 });
 
 /**
@@ -270,6 +279,7 @@ gulp.task('client:build:assets', gulp.parallel(
   'client:build:sass',
   'client:build:htmlcss',
   'client:build:static',
+  'client:build:jquery',
   'client:build:materialize'));
 
 /**
