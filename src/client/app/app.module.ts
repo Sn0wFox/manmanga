@@ -7,6 +7,7 @@ import { HttpModule }     from '@angular/http';
 // Angular2 custom modules
 import { AppRoutingModule } from './app-routing.module';
 import { SearchModule }     from './search/search.module';
+import { ModalModule }      from './modal/modal.module';
 
 // Components for this module
 import { AppComponent }     from './app.component';
@@ -21,6 +22,7 @@ import { AppComponent }     from './app.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    ModalModule,
     SearchModule      // Eagerly loaded (on start) because default module to show
   ],
   exports: [

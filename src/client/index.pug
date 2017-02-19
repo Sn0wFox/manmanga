@@ -6,7 +6,7 @@ html
     title Manmanga
     link(href="static/favicon.ico", rel="icon", type="image/x-icon")
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
-    link(href="static/css/materialize.css", rel="stylesheet", type="text/css", media="screen,projection")
+    link(href="static/css/materialize.min.css", rel="stylesheet", type="text/css", media="screen,projection")
     link(href="index.css", rel="stylesheet" type="text/css")
     base(href="/")
   body
@@ -21,4 +21,6 @@ html
             .circle-clipper.right
               .circle
 
-    script(async src="/main.bundle.js")
+    script(src="static/js/jquery.min.js", type="text/javascript")
+    script(src="static/js/materialize.min.js", type="text/javascript")
+    script(async src="main.bundle.js", type="text/javascript")

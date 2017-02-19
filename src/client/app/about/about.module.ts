@@ -8,7 +8,7 @@ import { AboutComponent }     from './about.component';
     AboutRoutingModule
   ],
   declarations: [
-    AboutComponent
+    AboutComponent,
   ]
 })
 export class AboutModule {
