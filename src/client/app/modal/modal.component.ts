@@ -1,6 +1,5 @@
 import {  Component,
           Input,
-          OnInit,
           AfterViewInit,
           Renderer,
           ViewChild,
@@ -11,7 +10,6 @@ import {  Component,
           ComponentFactoryResolver  } from '@angular/core';
 
 import { AbstractModalComponent } from './abstract-modal/abstract-modal.component';
-import { AwModalComponent } from './alpha-welcome-modal/aw-modal.component';
 
 /**
  * JQuery must be included before materialize.
@@ -28,17 +26,17 @@ declare let $: JQueryStatic;
   templateUrl: 'modal.component.pug',
   styleUrls: ['modal.component.scss']
 })
-export class ModalComponent implements OnInit, AfterViewInit {
+export class ModalComponent implements AfterViewInit {
 
   /**
-   * The modal dom element, gathered by Angular.
+   * The modal DOM element, gathered by Angular.
    */
   @ViewChild('theModal')
   protected modalRef: ElementRef;
 
   /**
    * A reference to the container which will contain
-   * a dynamically loaded component.
+   * a dynamically loaded component, i.e. the modal's content.
    */
   @ViewChild('dynamic', {read: ViewContainerRef})
   protected dynamicContainer: ViewContainerRef;
@@ -47,23 +45,11 @@ export class ModalComponent implements OnInit, AfterViewInit {
    * A reference to the currently loaded component.
    * @type {ComponentRef<any>}
    */
-  protected dynamicRef: ComponentRef<any> = null;
+  protected dynamicRef: ComponentRef<AbstractModalComponent> = null;
 
   /**
-   * Title of the modal window.
-   */
-  @Input()
-  protected title: string;
-
-  /**
-   * Content of the modal window.
-   */
-  // TODO: make it another component
-  @Input()
-  protected content: string;
-
-  /**
-   * Whether or not the modal must allow validation.
+   *  Whether or not the modal must allow validation.
+   * @type {boolean}
    */
   @Input()
   protected validate: boolean = false;
@@ -76,27 +62,27 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input()
   protected buttonText: string[] = ['OK', 'CANCEL'];
 
-  protected containerReady: boolean = false;
+  /**
+   * Whether or not the modal must open on load.
+   * @type {boolean}
+   */
+  @Input()
+  protected openOnLoad: boolean = true;
 
+  /**
+   * The type of the modal content,
+   * i.e. the type of the component that will be dynamically loaded.
+   */
+  @Input()
   protected componentType: Type<AbstractModalComponent>;
 
+  /**
+   * Instantiate private services.
+   */
   constructor(
     private renderer: Renderer,
     private componentFactoryResolver: ComponentFactoryResolver) {
     // Nothing else to do
-  }
-
-  /**
-   * Properly initializes the component.
-   * Sets default values if not provided
-   */
-  public ngOnInit(): void {
-    if(!this.title) {
-      this.title = 'My Modal';
-    }
-    if(!this.content) {
-      this.content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-    }
   }
 
   /**
@@ -106,13 +92,12 @@ export class ModalComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     // Enable modal behaviour
     this.renderer.invokeElementMethod($(this.modalRef.nativeElement), 'modal');
-    // Load dynamically a component (just a test);
-    this.componentType = AwModalComponent;
+    // Load dynamically the component
     this.loadComponent();
-    // Open the modal (just a test)
-    this.open();
-    // The container is now ready to be used
-    this.containerReady = true;
+    // Open the directly the modal if if should be opened on load
+    if(this.openOnLoad) {
+      this.open();
+    }
   }
 
   /**
@@ -134,6 +119,10 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.renderer.invokeElementMethod($(this.modalRef.nativeElement), 'modal', ['close']);
   }
 
+  /**
+   * Loads the content component into the modal.
+   * If there was a previous content, it is destroyed first.
+   */
   protected loadComponent(): void {
     // Get the factory for the component
     let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentType);
