@@ -70,7 +70,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
       this.title = 'My Modal';
     }
     if(!this.content) {
-      this.content = 'A bunch of text';
+      this.content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
     }
   }
 
@@ -78,7 +78,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
    * Once the modal element has been gathered,
    * enables it so it can be opened and close at will.
    */
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     // Enable modal behaviour
     this.renderer.invokeElementMethod($(this.modalRef.nativeElement), 'modal');
     // Open the modal (just a test)

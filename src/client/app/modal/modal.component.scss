@@ -1,0 +1,26 @@
+@import '../../common/common';
+
+.modal h1,
+.modal h2,
+.modal h3,
+.modal h4
+{
+  text-align: center;
+}
+
+.validate {
+  background-color: $color-primary;
+}
+
+.invalidate {
+  background-color: $color-accent;
+}
+
+.btn-flat:focus, .btn-flat:hover {
+  background-color: $color-primary-darker;
+}
+
+.modal-content p {
+  text-align: justify;
+  text-justify: auto;
+}
