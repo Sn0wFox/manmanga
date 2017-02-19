@@ -1,7 +1,7 @@
-import { Component, Type }        from '@angular/core';
+import { Component, Type }  from '@angular/core';
 
-import { AbstractModalComponent } from './modal/abstract-modal/abstract-modal.component';
-import { AwModalComponent }       from './modal/alpha-welcome-modal/aw-modal.component';
+import { AbstractModal }    from './modal/modal.abstract';
+import { AwModalComponent } from './modal/alpha-welcome-modal/aw-modal.component';
 
 @Component({
   selector: 'mmg-app',
@@ -13,5 +13,5 @@ export class AppComponent {
    * The type of the modal to open on loading.
    * @type {AwModalComponent}
    */
-  private modalType: Type<AbstractModalComponent> = AwModalComponent;
+  private modalType: Type<AbstractModal> = AwModalComponent;
 }

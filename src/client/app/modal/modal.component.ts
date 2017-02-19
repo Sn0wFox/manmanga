@@ -9,7 +9,7 @@ import {  Component,
           Type,
           ComponentFactoryResolver  } from '@angular/core';
 
-import { AbstractModalComponent } from './abstract-modal/abstract-modal.component';
+import { AbstractModal } from './modal.abstract';
 
 /**
  * JQuery must be included before materialize.
@@ -45,7 +45,7 @@ export class ModalComponent implements AfterViewInit {
    * A reference to the currently loaded component.
    * @type {ComponentRef<any>}
    */
-  protected dynamicRef: ComponentRef<AbstractModalComponent> = null;
+  protected dynamicRef: ComponentRef<AbstractModal> = null;
 
   /**
    *  Whether or not the modal must allow validation.
@@ -74,7 +74,7 @@ export class ModalComponent implements AfterViewInit {
    * i.e. the type of the component that will be dynamically loaded.
    */
   @Input()
-  protected componentType: Type<AbstractModalComponent>;
+  protected componentType: Type<AbstractModal>;
 
   /**
    * Instantiate private services.
