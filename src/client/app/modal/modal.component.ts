@@ -67,7 +67,7 @@ export class ModalComponent implements AfterViewInit {
    * @type {boolean}
    */
   @Input()
-  protected openOnLoad: boolean = true;
+  protected openOnLoad: boolean = false;
 
   /**
    * The type of the modal content,
