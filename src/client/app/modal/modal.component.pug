@@ -1,7 +1,7 @@
 .modal(#theModal='')
   .modal-content
     h4 {{title}}
-    p {{content}}
+    div(#dynamic='')
   .modal-footer
     button.modal-action.modal-close.waves-effect.validate.btn-flat((click)='close()') {{buttonText[0]}}
     button.modal-action.modal-close.waves-effect.invalidate.btn-flat((click)='close()', "*ngIf"="validate") {{buttonText[1]}}

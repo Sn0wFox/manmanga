@@ -1,9 +1,17 @@
-import { Component }      from '@angular/core';
-import { OnInit, Input }  from '@angular/core';
-import { Renderer }       from '@angular/core';
-import { AfterViewInit }  from '@angular/core';
-import { ViewChild }      from '@angular/core';
-import { ElementRef }     from '@angular/core';
+import {  Component,
+          Input,
+          OnInit,
+          AfterViewInit,
+          Renderer,
+          ViewChild,
+          ViewContainerRef,
+          ElementRef,
+          ComponentRef,
+          Type,
+          ComponentFactoryResolver  } from '@angular/core';
+
+import { AbstractModalComponent } from './abstract-modal/abstract-modal.component';
+import { AwModalComponent } from './alpha-welcome-modal/aw-modal.component';
 
 /**
  * JQuery must be included before materialize.
@@ -28,7 +36,18 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @ViewChild('theModal')
   protected modalRef: ElementRef;
 
-  //protected modalElement: ????;
+  /**
+   * A reference to the container which will contain
+   * a dynamically loaded component.
+   */
+  @ViewChild('dynamic', {read: ViewContainerRef})
+  protected dynamicContainer: ViewContainerRef;
+
+  /**
+   * A reference to the currently loaded component.
+   * @type {ComponentRef<any>}
+   */
+  protected dynamicRef: ComponentRef<any> = null;
 
   /**
    * Title of the modal window.
@@ -57,7 +76,13 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input()
   protected buttonText: string[] = ['OK', 'CANCEL'];
 
-  constructor(protected renderer: Renderer) {
+  protected containerReady: boolean = false;
+
+  protected componentType: Type<AbstractModalComponent>;
+
+  constructor(
+    private renderer: Renderer,
+    private componentFactoryResolver: ComponentFactoryResolver) {
     // Nothing else to do
   }
 
@@ -81,8 +106,13 @@ export class ModalComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     // Enable modal behaviour
     this.renderer.invokeElementMethod($(this.modalRef.nativeElement), 'modal');
+    // Load dynamically a component (just a test);
+    this.componentType = AwModalComponent;
+    this.loadComponent();
     // Open the modal (just a test)
     this.open();
+    // The container is now ready to be used
+    this.containerReady = true;
   }
 
   /**
@@ -102,6 +132,20 @@ export class ModalComponent implements OnInit, AfterViewInit {
    */
   public close(): void {
     this.renderer.invokeElementMethod($(this.modalRef.nativeElement), 'modal', ['close']);
+  }
+
+  protected loadComponent(): void {
+    // Get the factory for the component
+    let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentType);
+    // Destroy an eventual dynamic component
+    if(this.dynamicRef) {
+      this.dynamicRef.destroy();
+    }
+    // Create the component
+    this.dynamicRef = this.dynamicContainer.createComponent(factory);
+    // Well, uh, it's recommended to do that too !
+    // I suppose that it enables properly data bindings for a dynamically loaded component
+    this.dynamicRef.changeDetectorRef.detectChanges();
   }
 
 }

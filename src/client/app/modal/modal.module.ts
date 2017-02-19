@@ -1,7 +1,8 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 
-import { ModalComponent } from './modal.component';
+import { ModalComponent }   from './modal.component';
+import { AwModalComponent } from './alpha-welcome-modal/aw-modal.component';
 
 @NgModule({
   imports: [
@@ -9,9 +10,14 @@ import { ModalComponent } from './modal.component';
   ],
   declarations: [
     ModalComponent,
+    AwModalComponent
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    AwModalComponent
+  ],
+  entryComponents: [
+    AwModalComponent
   ]
 })
 export class ModalModule {
