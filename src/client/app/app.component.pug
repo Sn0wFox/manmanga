@@ -9,5 +9,4 @@ div.wrapper
             a(routerLink="/about") About
     router-outlet
 
-    #mmg-disclamer-modal
-      mmg-modal([componentType]="modalType", [openOnLoad]="true")
+    mmg-modal#mmg-disclaimer-modal([componentType]="modalType", [openOnLoad]="true", [buttonText]="['Got it']")

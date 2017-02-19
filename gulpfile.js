@@ -194,7 +194,7 @@ gulp.task('client:build:htmlcss', () => {
  */
 gulp.task('client:build:static', () => {
   return gulp
-    .src('src/client/static/*')
+    .src('src/client/static/**')
     .pipe(gulp.dest('dist/client/static'));
 });
 

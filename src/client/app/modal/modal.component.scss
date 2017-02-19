@@ -8,6 +8,25 @@
   background-color: $color-accent;
 }
 
-.btn-flat:focus, .btn-flat:hover {
+.btn:focus, .btn:hover {
   background-color: $color-primary-darker;
+}
+
+.modal .modal-footer .btn {
+  float: none;
+  color: $color-text-primary-dark;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.modal-footer {
+  background-color: transparent;
+}
+
+.modal.modal-fixed-footer .modal-footer {
+  border-top: 1px solid rgba(0,0,0,0.5);
 }
