@@ -1,11 +1,35 @@
 @import "../../../common/palette";
+
 $bgColor: transparent;
+$border-thickness: 1px;
 
 .searchbar {
   width: 60%;
 }
 
-input:focus:not([type]):not([readonly]), input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+form {
+  position: relative;
+  display: flex;
+}
+
+#mmg-search-button {
+  position: absolute;
+  right: $border-thickness;
+}
+
+input:focus:not([type]):not([readonly]),
+input[type="text"]:focus:not([readonly]),
+input[type="password"]:focus:not([readonly]),
+input[type="email"]:focus:not([readonly]),
+input[type="url"]:focus:not([readonly]),
+input[type="time"]:focus:not([readonly]),
+input[type="date"]:focus:not([readonly]),
+input[type="datetime"]:focus:not([readonly]),
+input[type="datetime-local"]:focus:not([readonly]),
+input[type="tel"]:focus:not([readonly]),
+input[type="number"]:focus:not([readonly]),
+input[type="search"]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
   color: #464a4c;
   background-color: transparent;
@@ -37,7 +61,7 @@ textarea.materialize-textarea {
   background-image: none;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
+  border: $border-thickness solid rgba(0,0,0,.15);
   border-radius: .25rem;
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
