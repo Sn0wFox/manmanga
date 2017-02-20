@@ -4,8 +4,8 @@
   .col.s12.m8.offset-m2
     div.comp
       form
-        input(#searchfield='')
-        a#mmg-search-button.waves-effect.waves-light.btn.btn-flat((click)="onClick(searchfield.value)")
+        input#mmg-search-field(#searchfield='')
+        a#mmg-search-button.waves-effect.waves-light.btn-flat((click)="onClick(searchfield.value)")
           i.material-icons search
 
 // TODO: put the following somewhere else: it doesn't belong to search bar

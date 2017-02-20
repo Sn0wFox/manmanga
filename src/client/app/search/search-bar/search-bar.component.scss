@@ -2,6 +2,9 @@
 
 $bgColor: transparent;
 $border-thickness: 1px;
+$icon-font-size: 1.3rem;
+$button-padding-side: 2rem;
+$field-padding-side: .75rem;
 
 .searchbar {
   width: 60%;
@@ -12,9 +15,18 @@ form {
   display: flex;
 }
 
+#mmg-search-field {
+  padding-right: $field-padding-side + $icon-font-size + 2 * $button-padding-side;
+}
+
 #mmg-search-button {
   position: absolute;
   right: $border-thickness;
+  width: $button-padding-side * 2 + $icon-font-size;
+
+  i {
+    font-size: $icon-font-size;
+  }
 }
 
 input:focus:not([type]):not([readonly]),
@@ -53,7 +65,7 @@ textarea.materialize-textarea {
   display: block;
   width: 100%;
   height: inherit;
-  padding: .5rem .75rem;
+  padding: .5rem $field-padding-side;
   font-size: 1rem;
   line-height: 1.25;
   color: #464a4c;
