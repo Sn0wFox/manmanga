@@ -1,60 +1,122 @@
-$bgColor: #c9f8ff;
+@import "../../../common/palette";
+$bgColor: transparent;
 
 .searchbar {
-  padding-top: 250px;
-  margin: auto;
   width: 60%;
 }
 
-.title {
-  text-align: center;
-  font-size: 50px;
-  font-family: "Verdana Pro Light", sans-serif;
-  padding-bottom: 5px;
+input:focus:not([type]):not([readonly]), input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  box-shadow: none;
+  color: #464a4c;
+  background-color: transparent;
+  border-color: $color-accent;
+  outline: 0;
 }
 
-.subTitle {
-  font-size: 20px;
-  padding-bottom: 5px;
+input:not([type]),
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="time"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+textarea.materialize-textarea {
+  display: block;
+  width: 100%;
+  height: inherit;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: transparent;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 }
 
-.comp {
-  background-color: lightgrey;;
-  border: 1px solid snow;
-  text-align: center;
-}
+//input {
+//  display: block;
+//  width: 100%;
+//  padding: .5rem .75rem;
+//  font-size: 1rem;
+//  line-height: 1.25;
+//  color: #464a4c;
+//  background-color: transparent;
+//  background-image: none;
+//  -webkit-background-clip: padding-box;
+//  background-clip: padding-box;
+//  border: 1px solid rgba(0,0,0,.15);
+//  border-radius: .25rem;
+//  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+//  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+//  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+//  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+//  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+//}
 
-.input {
-  background-color: $bgColor;
-  width: 80%;
-  margin: auto;
-  padding: -2px;
-  height: 2em;
-  border: 2px solid snow;
-}
+//input:focus {
+//  color: #464a4c;
+//  background-color: transparent;
+//  border-color: $color-accent;
+//  outline: 0;
+//}
 
-.button {
-  margin-top: 10px;
-  height: 2em;
-  padding: 0.3em;
-  background-color: #f9f6f9;
-  border-radius: 4px;
-  color: #535797;
-}
 
-.manga .anime .author {
-  border: 1px;
-  text-align: center;
-}
 
-.manga {
-  background-color: lightcoral;
-}
+//.title {
+//  text-align: center;
+//  font-size: 50px;
+//  font-family: "Verdana Pro Light", sans-serif;
+//  padding-bottom: 5px;
+//}
 
-.anime {
-  background-color: lightgreen;
-}
+//.subTitle {
+//  font-size: 20px;
+//  padding-bottom: 5px;
+//}
 
-.author {
-  background-color: lightgoldenrodyellow;
-}
+//.comp {
+//  background-color: lightgrey;;
+//  border: 1px solid snow;
+//  text-align: center;
+//}
+
+
+
+//.button {
+//  margin-top: 10px;
+//  height: 2em;
+//  padding: 0.3em;
+//  background-color: #f9f6f9;
+//  border-radius: 4px;
+//  color: #535797;
+//}
+
+//.manga .anime .author {
+//  border: 1px;
+//  text-align: center;
+//}
+//
+//.manga {
+//  background-color: lightcoral;
+//}
+//
+//.anime {
+//  background-color: lightgreen;
+//}
+//
+//.author {
+//  background-color: lightgoldenrodyellow;
+//}

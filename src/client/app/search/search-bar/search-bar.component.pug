@@ -1,44 +1,49 @@
-div.searchbar
-  div.title ManManga
-  div.comp
-    div
-      <Input #searchfield>
-      .buttonSend
-        button(class="waves-effect waves-light btn" "(click)"="onClick(searchfield.value)") envoyer
-    div(class="sort")
-      .row
-        .manga
-          .col.s4
-            .card.blue.darken-2
-              .card-content
-                span.card-title Manga
-                <input type="checkbox" class="filled-in" id="testManga" checked="checked" #mangaFilter (change)="chgManga(mangaFilter.checked)" >
-                <label for="testManga"></label>
-        .anime
-          .col.s4
-            .card.green.lighten-2
-              .card-content
-                span.card-title Anime
-                <input type="checkbox" class="filled-in" id="testAnime" checked="checked"  #animeFilter (change)="chgAnime(animeFilter.checked)">
-                <label for="testAnime"></label>
-        .author
-          .col.s4
-            .card.teal.lighten-2
-              .card-content
-                span.card-title Author
-                <input type="checkbox" class="filled-in" id="testAuthor" checked="checked" #authorFilter (change)="chgAuthor(authorFilter.checked)">
-                <label for="testAuthor"></label>
-.row
-  .mangasresponses("*ngIf"="mangaList")
-    .filter1("*ngIf"="mangaFilter")
-      .mangaresponse("*ngFor"="let manga of mangaList")
-        <mmg-manga-response [manga]="manga"></mmg-manga-response>
-  .animesresponses("*ngIf"="animeList")
-    .filter2("*ngIf"="animeFilter")
-      .animeresponse("*ngFor"="let anime of animeList")
-        <mmg-anime-response [anime]="anime"></mmg-anime-response>
-  .authorsresponses("*ngIf"="authorList")
-    .filter3("*ngIf"="authorFilter")
-      .authorresponse("*ngFor"="let author of authorList")
-        <mmg-author-response [author]="author"></mmg-author-response>
+.row.searchbar.center-align
+  .col.s12.m8.offset-m2
+    img.responsive-img(src="static/logo.png" alt="manmanga logo")
+  .col.s12.m8.offset-m2
+    div.comp
+      div
+        input(#searchfield='')
+        .buttonSend
+          button(class="waves-effect waves-light btn" "(click)"="onClick(searchfield.value)") Search
+
+// TODO: put the following somewhere else: it doesn't belong to search bar
+// TODO: still handle the filter to avoid losing time
+//      div(class="sort")
+//        .row
+//          .manga
+//            .col.s4
+//              .card.blue.darken-2
+//                .card-content
+//                  span.card-title Manga
+//                  <input type="checkbox" class="filled-in" id="testManga" checked="checked" #mangaFilter (change)="chgManga(mangaFilter.checked)" >
+//                  <label for="testManga"></label>
+//          .anime
+//            .col.s4
+//              .card.green.lighten-2
+//                .card-content
+//                  span.card-title Anime
+//                  <input type="checkbox" class="filled-in" id="testAnime" checked="checked"  #animeFilter (change)="chgAnime(animeFilter.checked)">
+//                  <label for="testAnime"></label>
+//          .author
+//            .col.s4
+//              .card.teal.lighten-2
+//                .card-content
+//                  span.card-title Author
+//                  <input type="checkbox" class="filled-in" id="testAuthor" checked="checked" #authorFilter (change)="chgAuthor(authorFilter.checked)">
+//                  <label for="testAuthor"></label>
+//.row
+//  .mangasresponses("*ngIf"="mangaList")
+//    .filter1("*ngIf"="mangaFilter")
+//      .mangaresponse("*ngFor"="let manga of mangaList")
+//        <mmg-manga-response [manga]="manga"></mmg-manga-response>
+//  .animesresponses("*ngIf"="animeList")
+//    .filter2("*ngIf"="animeFilter")
+//      .animeresponse("*ngFor"="let anime of animeList")
+//        <mmg-anime-response [anime]="anime"></mmg-anime-response>
+//  .authorsresponses("*ngIf"="authorList")
+//    .filter3("*ngIf"="authorFilter")
+//      .authorresponse("*ngFor"="let author of authorList")
+//        <mmg-author-response [author]="author"></mmg-author-response>
 
