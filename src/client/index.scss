@@ -1,8 +1,8 @@
-@import './common/common';
+@import './common/palette';
 
 /******* DEFAULT CORE *******/
 html, body {
-  background-color: $color-primary;
+  background-color: $color-primary-lighter;
 }
 
 /******* DEFAULT SPINNER *******/
@@ -18,7 +18,7 @@ html, body {
 }
 
 .mmg-spinner {
-  border-color: $color-secondary-darker;
+  border-color: $color-accent;
 }
 
 /******* DEFAULT OTHERS *******/

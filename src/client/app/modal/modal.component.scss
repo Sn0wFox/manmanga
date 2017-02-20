@@ -1,15 +1,15 @@
-@import '../../common/common';
+@import '../../common/palette';
 
 .validate {
-  background-color: $color-primary;
+  background-color: $color-accent-lighter;
 }
 
 .invalidate {
-  background-color: $color-accent;
+  background-color: $color-accent-lighter;
 }
 
 .btn:focus, .btn:hover {
-  background-color: $color-primary-darker;
+  background-color: $color-accent;
 }
 
 .modal .modal-footer .btn {
