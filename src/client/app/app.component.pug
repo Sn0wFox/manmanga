@@ -1,12 +1,34 @@
-div.wrapper
-  div.content
+.wrapper
+  .content
     nav
       .nav-wrapper
-        ul#nav-mobile.left.hide-on-med-and-down
+        ul#nav-mobile.right.hide-on-med-and-down
           li
             a(routerLink="/home") Home
           li
             a(routerLink="/about") About
+          li
+            a(#menu='' href='#', data-activates='slide-out')
+              i.material-icons menu
+
+    ul#slide-out.side-nav
+      li
+        a(href='#!')
+          i.material-icons cloud
+          | First Link With Icon
+      li
+        a(href='#!') Second Link
+      li
+        .divider
+      li
+        a.subheader Subheader
+      li
+        a.waves-effect(href='#!') Third Link With Waves
+      li
+        a(routerLink="/home") Home
+      li
+        a(routerLink="/about") About
+
     router-outlet
 
     mmg-modal#mmg-disclaimer-modal([componentType]="modalType", [openOnLoad]="true", [buttonText]="['Got it']")

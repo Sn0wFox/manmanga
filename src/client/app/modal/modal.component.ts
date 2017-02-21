@@ -105,7 +105,7 @@ export class ModalComponent implements AfterViewInit {
    */
   public open(): void {
     // NOTE:  we could just do:
-    //        $(this.modalRef.nativeElement).modal('open');
+    //        $(this.menuRef.nativeElement).modal('open');
     //        But we will prefer using the renderer to do it the angular way.
     //        Since we ned to wrap it in JQuery to call the function 'modal' anyway,
     //        I'm not sure about what may happen if we try to use the app with Electron for example.
