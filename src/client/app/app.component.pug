@@ -2,32 +2,43 @@
   .content
     nav
       .nav-wrapper
-        ul#nav-mobile.right.hide-on-med-and-down
-          li
-            a(routerLink="/home") Home
-          li
-            a(routerLink="/about") About
+        ul#nav-mobile.right
           li
             a(#menu='' href='#', data-activates='slide-out')
               i.material-icons menu
 
     ul#slide-out.side-nav
       li
-        a(href='#!')
-          i.material-icons cloud
-          | First Link With Icon
+        a.subheader MENU
       li
-        a(href='#!') Second Link
+        a(routerLink="/home")
+          i.material-icons search
+          | Search
+      li
+        a(routerLink="/about")
+          i.material-icons info_outline
+          | About
+      li
+        a
+          i.material-icons verified_user
+          | Privacy Policy
+
       li
         .divider
       li
-        a.subheader Subheader
+        a.subheader CONTACTS (not available yet!)
       li
-        a.waves-effect(href='#!') Third Link With Waves
+        a
+          i.material-icons email
+          | Email
       li
-        a(routerLink="/home") Home
+        a
+          i.material-icons thumbs_up_down
+          | Feedback
       li
-        a(routerLink="/about") About
+        a
+          i.material-icons grade
+          | Donate
 
     router-outlet
 

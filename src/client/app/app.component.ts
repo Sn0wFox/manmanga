@@ -33,7 +33,8 @@ export class AppComponent implements AfterViewInit {
    * Enables the side navigation.
    */
   public ngAfterViewInit(): void {
-    this.renderer.invokeElementMethod($(this.menuRef.nativeElement), 'sideNav');
+    this.renderer.invokeElementMethod($(this.menuRef.nativeElement), 'sideNav',
+      [{edge: 'right', closeOnClick: true}]);
   }
 
   /**
