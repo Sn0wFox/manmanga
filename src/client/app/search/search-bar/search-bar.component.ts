@@ -9,7 +9,7 @@ import { Character }      from '../../../../lib/interfaces/character.interface';
 import { ApiService }     from '../services/api.service';
 
 @Component({
-  selector: 'mmg-search',
+  selector: 'mmg-search-bar',
   templateUrl: 'search-bar.component.pug',
   styleUrls: ['search-bar.component.scss']
 })
