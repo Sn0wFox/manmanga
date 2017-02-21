@@ -1,5 +1,11 @@
 @import "../common/palette";
 
+nav {
+  background-color: $color-primary-darker;
+  z-index: 10;
+  position: sticky;
+}
+
 /**
  * Force the disclaimer modal to have a certain background.
  */
