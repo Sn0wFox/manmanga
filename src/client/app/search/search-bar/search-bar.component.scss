@@ -1,6 +1,5 @@
 @import "../../../common/palette";
 
-$bgColor: transparent;
 $border-thickness: 1px;
 $icon-font-size: 1.3rem;
 $button-padding-side: 2rem;
@@ -42,9 +41,9 @@ input[type="number"]:focus:not([readonly]),
 input[type="search"]:focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
-  color: #464a4c;
+  color: $color-primary-darker;
   background-color: transparent;
-  border-color: $color-accent;
+  border-color: $color-text-secondary-dark;
   outline: 0;
 }
 
@@ -68,12 +67,12 @@ textarea.materialize-textarea {
   margin: 0;
   font-size: 1rem;
   line-height: 1.25;
-  color: #464a4c;
+  color: $color-primary-darker;
   background-color: transparent;
   background-image: none;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: $border-thickness solid rgba(0,0,0,.15);
+  border: $border-thickness solid $color-text-secondary-light;
   border-radius: $border-radius;
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
