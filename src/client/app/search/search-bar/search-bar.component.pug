@@ -2,11 +2,11 @@
   .col.s12.m8.offset-m2
     img.responsive-img(src="static/logo.png" alt="manmanga logo")
   .col.s12.m8.offset-m2
-    div.comp
-      form
-        input#mmg-search-field(#searchfield='')
-        a#mmg-search-button.waves-effect.waves-light.btn-flat((click)="onClick(searchfield.value)")
-          i.material-icons search
+    .comp
+      input#mmg-search-field(#searchfield='', (keypress)="onKeyPress($event, searchfield.value)")
+      a#mmg-search-button.waves-effect.waves-light.btn-flat((click)="onClick(searchfield.value)")
+        i.material-icons search
+      // TODO: add something to erase field
 
 // TODO: put the following somewhere else: it doesn't belong to search bar
 // TODO: still handle the filter to avoid losing time

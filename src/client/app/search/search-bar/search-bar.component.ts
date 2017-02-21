@@ -14,7 +14,6 @@ import { ApiService }     from '../services/api.service';
   styleUrls: ['search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-  private apiService: ApiService;
   private mangaList: Manga[];
   private authorList: Author[];
   private animeList: Anime[];
@@ -38,11 +37,10 @@ export class SearchBarComponent implements OnInit {
     this.animeFilter = true;
     this.authorFilter = true;
     this.characterFilter = true;
-
   }
 
   /**
-   * An experimental search.
+   * Performs a search thanks to ManManga API.
    */
   protected search(query: string): void {
     this.apiService
@@ -54,9 +52,29 @@ export class SearchBarComponent implements OnInit {
       });
   }
 
-  protected onClick(input: string) {
-    this.search(input);
-    this.fillWithResponses();
+  /**
+   * Performs a search when the search button is pressed.
+   * Does nothing if the query string is empty or undefined.
+   * @param query The query to perform the search.
+   */
+  protected onClick(query: string) {
+    if(query && query != '') {
+      this.search(query);
+      this.fillWithResponses();
+    }
+  }
+
+  /**
+   * Performs a search when the enter key is pressed.
+   * Does nothing if the query string is empty or undefined.
+   * @param event The KeyBoardEvent emitted, to check which key has been pressed.
+   * @param query The query to perform the search.
+   */
+  protected onKeyPress(event: KeyboardEvent, query: string) {
+    if(event.keyCode == 13 && query && query != '') {
+      this.search(query);
+      this.fillWithResponses();
+    }
   }
 
 
@@ -98,7 +116,7 @@ export class SearchBarComponent implements OnInit {
    * Instantiates the component,
    * and initializes needed services.
    */
-  constructor(apiService: ApiService) {
-    this.apiService = apiService;
+  constructor(private apiService: ApiService) {
+    // Nothing else to do
   }
 }

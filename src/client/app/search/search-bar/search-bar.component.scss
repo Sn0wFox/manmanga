@@ -10,7 +10,7 @@ $field-padding-side: .75rem;
   width: 60%;
 }
 
-form {
+.comp {
   position: relative;
   display: flex;
 }
@@ -23,7 +23,7 @@ form {
   position: absolute;
   right: $border-thickness;
   width: $button-padding-side * 2 + $icon-font-size;
-
+  background-color: $color-accent;
   i {
     font-size: $icon-font-size;
   }
