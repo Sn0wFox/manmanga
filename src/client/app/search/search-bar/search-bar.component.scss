@@ -21,9 +21,21 @@ $border-radius: .25rem;
   width: $button-padding-side * 2 + $icon-font-size;
   height: 100%;
   border-radius: $border-radius;
-  background-color: $color-accent;
+  background-color: transparent;
   i {
     font-size: $icon-font-size;
+    color: $color-text-secondary-dark;
+  }
+}
+
+#mmg-search-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+#mmg-search-button.filled {
+  background-color: $color-accent;
+  i {
+    color: $color-text-primary-light;
   }
 }
 

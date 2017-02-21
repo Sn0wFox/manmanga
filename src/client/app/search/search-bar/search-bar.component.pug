@@ -1,6 +1,6 @@
 .comp
-  input#mmg-search-field(#searchfield='', (keypress)="onKeyPress($event, searchfield.value)")
-  a#mmg-search-button.waves-effect.waves-light.btn-flat((click)="onClick(searchfield.value)")
+  input#mmg-search-field(#searchfield='', (change)="onFieldChange($event)", (keyup)="onKeyUp($event, searchfield.value)")
+  a#mmg-search-button.waves-effect.waves-light.btn-flat([class.filled]="filled", (click)="onClick(searchfield.value)")
     i.material-icons search
   // TODO: add something to erase field
 

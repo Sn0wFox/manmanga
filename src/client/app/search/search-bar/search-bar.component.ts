@@ -1,4 +1,5 @@
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit }      from '@angular/core';
+import { ViewChild, ElementRef }  from '@angular/core';
 
 import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
 import { SearchResult }   from '../../../../lib/interfaces/search-result.interface';
@@ -23,6 +24,19 @@ export class SearchBarComponent implements OnInit {
   private animeFilter: boolean;
   private authorFilter: boolean;
   private characterFilter: boolean;
+
+  /**
+   * Whether or not the input field contains some characters.
+   * @type {boolean}
+   */
+  protected filled: boolean = false;
+
+  /**
+   * A reference to the input field.,
+   * gathered by angular.
+   */
+  @ViewChild('searchfield')
+  protected fieldRef: ElementRef;
 
   /**
    * Properly initialize component.
@@ -70,13 +84,19 @@ export class SearchBarComponent implements OnInit {
    * @param event The KeyBoardEvent emitted, to check which key has been pressed.
    * @param query The query to perform the search.
    */
-  protected onKeyPress(event: KeyboardEvent, query: string) {
+  protected onKeyUp(event: KeyboardEvent, query: string): void {
+    // 13: enter
+    // 8 : del
+    // 46: suppr
     if(event.keyCode == 13 && query && query != '') {
       this.search(query);
       this.fillWithResponses();
+    } else if(!this.filled && event.keyCode != 8 && event.keyCode != 46) {
+      this.filled = true;
+    } else if(this.filled && this.fieldRef.nativeElement.value == '') {
+      this.filled = false;
     }
   }
-
 
   chgManga(mgfltr: boolean): void {
     this.mangaFilter = mgfltr;
@@ -96,7 +116,7 @@ export class SearchBarComponent implements OnInit {
     this.authorList = [];
     this.animeList = [];
     this.characterList = [];
-    for(var result of this.results) {
+    for(let result of this.results) {
       if (result.author != undefined) {
           this.authorList.push(result.author);
       }
