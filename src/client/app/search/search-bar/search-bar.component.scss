@@ -5,9 +5,9 @@ $border-thickness: 1px;
 $icon-font-size: 1.3rem;
 $button-padding-side: 2rem;
 $field-padding-side: .75rem;
+$border-radius: .25rem;
 
 .searchbar {
-  width: 60%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,8 +25,10 @@ $field-padding-side: .75rem;
 
 #mmg-search-button {
   position: absolute;
-  right: $border-thickness;
+  right: 0;
   width: $button-padding-side * 2 + $icon-font-size;
+  height: 100%;
+  border-radius: $border-radius;
   background-color: $color-accent;
   i {
     font-size: $icon-font-size;
@@ -70,6 +72,7 @@ textarea.materialize-textarea {
   width: 100%;
   height: inherit;
   padding: .5rem $field-padding-side;
+  margin: 0;
   font-size: 1rem;
   line-height: 1.25;
   color: #464a4c;
@@ -78,7 +81,7 @@ textarea.materialize-textarea {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: $border-thickness solid rgba(0,0,0,.15);
-  border-radius: .25rem;
+  border-radius: $border-radius;
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
