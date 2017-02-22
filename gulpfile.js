@@ -132,7 +132,7 @@ gulp.task('server:test:clean', () => {
 gulp.task('client:build:webpack', () => {
   // TODO: add progress bar.
   return gulp
-    .src('src/client/main.browser.ts')
+    .src('src/client/app/main.browser.ts')
     .pipe(gwebpack(wpconf, webpack))
     .pipe(gulp.dest('dist/client'));
 });
@@ -160,21 +160,21 @@ gulp.task('client:build:jquery', () => {
 });
 
 /**
- * Compiles Pug files at the root of src/client.
+ * Compiles Pug files at the root of src/client/app.
  */
 gulp.task('client:build:pug', () => {
   return gulp
-    .src('src/client/*.pug')
+    .src('src/client/app/*.pug')
     .pipe(gpug())
     .pipe(gulp.dest('dist/client'));
 });
 
 /**
- * Compiles Sass (.sass and .scss) files at the root of src/client.
+ * Compiles Sass (.sass and .scss) files at the root of src/client/app.
  */
 gulp.task('client:build:sass', () => {
   return gulp
-    .src(['src/client/*.scss', 'src/client/*.sass'])
+    .src(['src/client/app/*.scss', 'src/client/app/*.sass'])
     .pipe(gsass())
     .pipe(gulp.dest('dist/client'));
 });
@@ -184,7 +184,7 @@ gulp.task('client:build:sass', () => {
  */
 gulp.task('client:build:htmlcss', () => {
   return gulp
-    .src(['src/client/*.html', 'src/client/*.css'])
+    .src(['src/client/app/*.html', 'src/client/app/*.css'])
     .pipe(gulp.dest('dist/client'));
 });
 
@@ -220,10 +220,10 @@ gulp.task('client:test', (done) => {
  * Watch all client files and rebuild them when needed.
  */
 gulp.task('client:watch', () => {
-  gulp.watch(['src/client/*.scss', 'src/client/**/*.sass'], gulp.series('client:build:sass'));
-  gulp.watch(['src/client/*.pug'], gulp.series('client:build:pug'));
-  gulp.watch(['src/client/*.html', 'src/client/*.css'], gulp.series('client:build:htmlcss'));
-  gulp.watch(['src/static/*'], gulp.series('client:build:static'));
+  gulp.watch(['src/client/app/*.scss', 'src/client/app/*.sass'], gulp.series('client:build:sass'));
+  gulp.watch(['src/client/app/*.pug'], gulp.series('client:build:pug'));
+  gulp.watch(['src/client/app/*.html', 'src/client/*.css'], gulp.series('client:build:htmlcss'));
+  gulp.watch(['src/static/**/*'], gulp.series('client:build:static'));
   gulp.watch([
     'src/client/*/**.ts',
     'src/lib/*/**.ts',

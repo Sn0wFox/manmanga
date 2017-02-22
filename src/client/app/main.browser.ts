@@ -1,8 +1,8 @@
-import './common/polyfills.browser';
+import '../common/polyfills.browser';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode }         from '@angular/core';
-import { AppModule }              from './app/app.module';
+import { AppModule }              from './mmg-app/app.module';
 
 export const platformRef = platformBrowserDynamic();
 

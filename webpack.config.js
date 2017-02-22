@@ -5,7 +5,7 @@ var webpackMerge = require('webpack-merge');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main':'./src/client/main.browser'
+    'main':'./src/client/app/main.browser'
   },
 
   output: {

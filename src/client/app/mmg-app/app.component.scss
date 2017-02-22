@@ -1,4 +1,4 @@
-@import "../common/palette";
+@import "../../common/palette";
 
 nav {
   background-color: $color-primary-darker;
@@ -14,7 +14,7 @@ nav {
   background-image: linear-gradient(
     rgba(245, 245, 245, 0.7),
     rgba(245, 245, 245, 0.7)
-  ), url('../static/sn0w2.jpg');
+  ), url('../../static/sn0w2.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;

@@ -4,8 +4,8 @@ import { AfterViewInit }    from '@angular/core';
 import { ElementRef }       from '@angular/core';
 import { Renderer }         from '@angular/core';
 
-import { AbstractModal }    from './modal/modal.abstract';
-import { AwModalComponent } from './modal/alpha-welcome-modal/aw-modal.component';
+import { AbstractModal }    from '../modal/modal.abstract';
+import { AwModalComponent } from '../modal/alpha-welcome-modal/aw-modal.component';
 
 declare let $: JQueryStatic;
 
