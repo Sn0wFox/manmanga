@@ -11,10 +11,12 @@ import { ModalModule }      from '../modal/modal.module';
 
 // Components for this module
 import { AppComponent }     from './app.component';
+import { NavbarComponent }  from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     // NOTES: Lazily loaded modules don't need to appear here
@@ -26,7 +28,8 @@ import { AppComponent }     from './app.component';
     SearchModule      // Eagerly loaded (on start) because default module to show
   ],
   exports: [
-    AppRoutingModule
+    AppRoutingModule,
+    NavbarComponent
   ],
   bootstrap: [ AppComponent ]
 })

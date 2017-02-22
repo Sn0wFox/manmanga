@@ -1,45 +1,5 @@
 .wrapper
   .content
-    nav
-      .nav-wrapper
-        ul#nav-mobile.right
-          li
-            a(#menu='' href='#', data-activates='slide-out')
-              i.material-icons menu
+    mmg-navbar
 
-    ul#slide-out.side-nav
-      li
-        a.subheader MENU
-      li
-        a(routerLink="/home")
-          i.material-icons search
-          | Search
-      li
-        a(routerLink="/about")
-          i.material-icons info_outline
-          | About
-      li
-        a
-          i.material-icons verified_user
-          | Privacy Policy
-
-      li
-        .divider
-      li
-        a.subheader CONTACTS (not available yet!)
-      li
-        a
-          i.material-icons email
-          | Email
-      li
-        a
-          i.material-icons thumbs_up_down
-          | Feedback
-      li
-        a
-          i.material-icons grade
-          | Donate
-
-    router-outlet
-
-    mmg-modal#mmg-disclaimer-modal([componentType]="modalType", [openOnLoad]="true", [buttonText]="['Got it']")
+mmg-modal#mmg-disclaimer-modal([componentType]="modalType", [openOnLoad]="true", [buttonText]="['Got it']")
