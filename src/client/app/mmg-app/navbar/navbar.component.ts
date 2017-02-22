@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   /**
    * Whether or not the search-bar must be shown.
    */
-  protected showSearchBar: boolean = false;
+  protected showSearchBar: boolean = true;
 
   /**
    * Properly initialize component.

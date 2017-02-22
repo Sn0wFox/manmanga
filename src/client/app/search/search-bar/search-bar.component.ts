@@ -1,6 +1,7 @@
 import * as Bluebird              from 'bluebird';
 import { Component, OnInit }      from '@angular/core';
 import { ViewChild, ElementRef }  from '@angular/core';
+import { Router }                 from '@angular/router';
 
 import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
 import { SearchResult }   from '../../../../lib/interfaces/search-result.interface';
@@ -62,8 +63,6 @@ export class SearchBarComponent implements OnInit {
     return this.apiService
       .search(query)
       .then((results: SearchResults) => {
-        // console.log('RESULTS RECEIVED:');
-        // console.log(results);
         this.results=results;
       });
   }
@@ -73,14 +72,15 @@ export class SearchBarComponent implements OnInit {
    * Does nothing if the query string is empty or undefined.
    * @param query The query to perform the search.
    */
-  protected onClick(query: string) {
+  protected onClick(query: string): void {
     if(query && query != '') {
-      this
-        .search(query)
-        .then(() => {
-          this.fillWithResponses();
-          this.emitterService.emit(this.emitterService.events.SEARCH_COMPLETE, this.results, false);
-        });
+      this.router.navigate(['/search', query]);
+      // this
+      //   .search(query)
+      //   .then(() => {
+      //     this.fillWithResponses();
+      //     this.emitterService.emit(this.emitterService.events.SEARCH_COMPLETE, this.results, false);
+      //   });
     }
   }
 
@@ -146,7 +146,8 @@ export class SearchBarComponent implements OnInit {
    */
   constructor(
     private apiService: ApiService,
-    private emitterService: EmitterService) {
+    private emitterService: EmitterService,
+    private router: Router) {
     // Nothing else to do
   }
 }
