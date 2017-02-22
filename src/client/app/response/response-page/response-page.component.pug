@@ -2,6 +2,8 @@
   .row.responsepage
     p I'm the response page component
     .row(*ngIf="results")
-      .col.s6.m4.l2(*ngFor="let manga of results")
-        mmg-manga-response([manga]="manga")
-      // TODO: complete, but that's the idea
+      .col.s6.m4.l2(*ngFor="let res of results")
+        mmg-manga-response(*ngIf="res.manga" [manga]="res.manga")
+        mmg-anime-response(*ngIf="res.anime" [anime]="res.anime")
+        mmg-author-response(*ngIf="res.author" [author]="res.author")
+        //mmg-character-response(*ngIf="res.character" [character]="res.character")
