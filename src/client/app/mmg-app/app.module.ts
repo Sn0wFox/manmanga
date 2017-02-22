@@ -13,10 +13,16 @@ import { ModalModule }      from '../modal/modal.module';
 import { AppComponent }     from './app.component';
 import { NavbarComponent }  from './navbar/navbar.component';
 
+// Services for this module
+import { EmitterService }   from './services/emitter.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent
+  ],
+  providers: [
+    EmitterService
   ],
   imports: [
     // NOTES: Lazily loaded modules don't need to appear here
