@@ -1,5 +1,6 @@
 .response-page-wrapper
   .row.responsepage
+    p I'm the response page component
     .row(*ngIf="results")
       .col.s6.m4.l2(*ngFor="let manga of results")
         mmg-manga-response([manga]="manga")

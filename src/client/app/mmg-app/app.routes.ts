@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { searchRouterConfig }  from '../search/search.routes';
+import { searchRouterConfig }   from '../search/search.routes';
+import { responseRouterConfig } from '../response/response.routes';
 
 export const rootRouterConfig: Routes = [
   { path: 'home', children: [...searchRouterConfig] },                  // Eagerly loaded module (on start)
+  { path: 'search', children: [...responseRouterConfig] },              // Eagerly loaded module (on start)
   { path: 'about', loadChildren: '../about/about.module#AboutModule' }, // Lazily loaded module (on navigate)
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

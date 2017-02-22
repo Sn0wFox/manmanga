@@ -13,6 +13,7 @@ function handleAngularRoutes(req: express.Request, res: express.Response) {
 }
 mainRouter.get('/home', handleAngularRoutes);
 mainRouter.get('/about', handleAngularRoutes);
+mainRouter.get('/search', handleAngularRoutes);
 
 // Serve a custom 404 page in case of an unknown route
 mainRouter.all('*', (req: express.Request, res: express.Response) => {
