@@ -40,7 +40,7 @@ export class ApiService {
     return Bluebird
       .try(() => {
         return this.http
-          .get(url.format(url.parse(`api/pipeline2/${query}`)))
+          .get(url.format(url.parse(`api/pipeline3/${query}`)))
           .toPromise();
       })
       .then((response: any) => {
