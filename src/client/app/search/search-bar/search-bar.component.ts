@@ -8,6 +8,8 @@ import { Author }         from '../../../../lib/interfaces/author.interface';
 import { Manga }          from '../../../../lib/interfaces/manga.interface';
 import { Character }      from '../../../../lib/interfaces/character.interface';
 import { ApiService }     from '../services/api.service';
+import { EmitterService } from '../../mmg-app/services/emitter.service';
+import Bluebird = require("bluebird");
 
 @Component({
   selector: 'mmg-search-bar',
@@ -56,8 +58,8 @@ export class SearchBarComponent implements OnInit {
   /**
    * Performs a search thanks to ManManga API.
    */
-  protected search(query: string): void {
-    this.apiService
+  protected search(query: string): Bluebird<void> {
+    return this.apiService
       .search(query)
       .then((results: SearchResults) => {
         // console.log('RESULTS RECEIVED:');
@@ -73,8 +75,12 @@ export class SearchBarComponent implements OnInit {
    */
   protected onClick(query: string) {
     if(query && query != '') {
-      this.search(query);
-      this.fillWithResponses();
+      this
+        .search(query)
+        .then(() => {
+          this.fillWithResponses();
+          this.emitterService.emit(this.emitterService.events.SEARCH_COMPLETE, this.results, false);
+        });
     }
   }
 
@@ -89,8 +95,7 @@ export class SearchBarComponent implements OnInit {
     // 8 : del
     // 46: suppr
     if(event.keyCode == 13 && query && query != '') {
-      this.search(query);
-      this.fillWithResponses();
+      this.search(query).then(this.fillWithResponses);
     } else if(!this.filled && event.keyCode != 8 && event.keyCode != 46 && event.keyCode != 13) {
       this.filled = true;
     } else if(this.filled && this.fieldRef.nativeElement.value == '') {
@@ -136,7 +141,9 @@ export class SearchBarComponent implements OnInit {
    * Instantiates the component,
    * and initializes needed services.
    */
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private emitterService: EmitterService) {
     // Nothing else to do
   }
 }
