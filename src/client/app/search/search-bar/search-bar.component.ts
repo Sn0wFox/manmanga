@@ -97,6 +97,7 @@ export class SearchBarComponent implements OnInit {
     if(event.keyCode == 13 && query && query != '') {
       this.search(query).then(() => {
         this.fillWithResponses();
+        this.emitterService.emit(this.emitterService.events.SEARCH_COMPLETE, this.results, false);
       });
     } else if(!this.filled && event.keyCode != 8 && event.keyCode != 46 && event.keyCode != 13) {
       this.filled = true;
