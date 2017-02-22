@@ -3,6 +3,8 @@ import * as Indexden  from 'indexden-client';
 
 import { MangaCover }     from '../../lib/interfaces/manga-cover.interface';
 import { Manga }          from '../../lib/interfaces/manga.interface';
+import { AnilistApi }     from '../lib/anilist-api.class';
+import { Manga as AlMg }  from '../lib/anilist-api.interfaces';
 import * as alchemy       from '../lib/alchemy';
 import * as DBPedia       from '../lib/dbpedia';
 import * as googlesearch  from '../lib/googlesearch';
@@ -67,6 +69,7 @@ export async function search2 (query: string): Promise<DBPedia.SearchResult[]> {
 export function search3(query: string): Bluebird<DBPedia.SearchResult[]> {
   let client = new Indexden.Client(process.env.INDEXDEN_ENDPOINT);
   let q: string = 'title:' + query;
+  let aniList: AnilistApi = new AnilistApi();
   return client
     .search('manmanga', {
       q: q
@@ -76,5 +79,24 @@ export function search3(query: string): Bluebird<DBPedia.SearchResult[]> {
     })
     .map((res: Indexden.Search.Match) => {
       return DBPedia.search(res.docid);
+    })
+    .map((dbpediaResult: DBPedia.SearchResult) => {
+      if (dbpediaResult && dbpediaResult.manga !== undefined) {
+        return aniList
+          .searchManga(DBPedia.resourceUrlToName(dbpediaResult.manga.title))
+          .then((manga: AlMg[]) => {
+            if(manga && manga[0]) {
+              dbpediaResult.manga.coverUrl = manga[0].image_url_lge;
+            }
+            return dbpediaResult;
+          })
+          .catch((err: Error) => {
+            console.log(err);
+            // Erf, something failed here, but that's not a problem: covers are optional
+            // Just return the previous result
+            return dbpediaResult;
+          });
+      }
+      return dbpediaResult;
     });
 }
