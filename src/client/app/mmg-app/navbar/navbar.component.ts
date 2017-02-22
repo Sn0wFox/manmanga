@@ -18,6 +18,11 @@ export class NavbarComponent implements AfterViewInit {
   protected menuRef: ElementRef;
 
   /**
+   * Whether or not the search-bar must be shown.
+   */
+  protected showSearchBar: boolean = false;
+
+  /**
    * Enables the side navigation.
    */
   public ngAfterViewInit(): void {

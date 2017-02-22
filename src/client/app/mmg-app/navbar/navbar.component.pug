@@ -2,7 +2,7 @@ nav
   .nav-wrapper
     a(href="/")
       img#mmg-logo(src="static/logo-mini-white.png", alt="ManManga mini icon")
-    .search-bar-wrapper
+    .search-bar-wrapper(*ngIf="showSearchBar")
       mmg-search-bar
     ul#nav-mobile.right
       li
