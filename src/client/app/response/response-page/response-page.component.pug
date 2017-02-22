@@ -1,0 +1,6 @@
+.response-page-wrapper
+  .row.responsepage
+    .row(*ngIf="results")
+      .col.s6.m4.l2(*ngFor="let manga of results")
+        mmg-manga-response([manga]="manga")
+      // TODO: complete, but that's the idea
