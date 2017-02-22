@@ -119,7 +119,7 @@ export class AnilistApi {
    * @param keywords A string containing all keywords to search,
    * separated by spaces.
    */
-  public async searchManga(keywords: string): Promise<AnilistManga> {
+  public async searchManga(keywords: string): Promise<AnilistManga[]> {
     return this.search("manga", keywords);
   }
 
@@ -128,7 +128,7 @@ export class AnilistApi {
    * @param keywords A string containing all keywords to search,
    * separated by spaces.
    */
-  public searchAnime(keywords: string): Promise<AnilistAnime> {
+  public searchAnime(keywords: string): Promise<AnilistAnime[]> {
     return this.search("anime", keywords);
   }
 
@@ -155,7 +155,7 @@ export class AnilistApi {
    * @param keywords A string containing all keywords to search,
    * separated by spaces.
    */
-  public searchStaff(keywords: string): Promise<AnilistStaff> {
+  public searchStaff(keywords: string): Promise<AnilistStaff[]> {
     return this.search("staff", keywords);
   }
 
@@ -164,7 +164,7 @@ export class AnilistApi {
    * @param keywords A string containing all keywords to search,
    * separated by spaces.
    */
-  public searchStudio(keywords: string): Promise<AnilistStudio> {
+  public searchStudio(keywords: string): Promise<AnilistStudio[]> {
     return this.search("studio", keywords);
   }
 

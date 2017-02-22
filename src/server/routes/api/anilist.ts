@@ -42,7 +42,7 @@ anilistApiRouter.get('/character/:name', async (req: Request, res: Response) => 
  */
 anilistApiRouter.get('/search/manga/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Manga = await anilistApi.searchManga(req.params['keywords']);
+    const result: Anilist.Manga[] = await anilistApi.searchManga(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -59,7 +59,7 @@ anilistApiRouter.get('/search/manga/:keywords', async (req: Request, res: Respon
  */
 anilistApiRouter.get('/search/anime/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Anime = await anilistApi.searchAnime(req.params['keywords']);
+    const result: Anilist.Anime[] = await anilistApi.searchAnime(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -94,7 +94,7 @@ anilistApiRouter.get('/search/character/:keywords', async (req: Request, res: Re
  */
 anilistApiRouter.get('/search/staff/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Staff = await anilistApi.searchStaff(req.params['keywords']);
+    const result: Anilist.Staff[] = await anilistApi.searchStaff(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
@@ -111,7 +111,7 @@ anilistApiRouter.get('/search/staff/:keywords', async (req: Request, res: Respon
  */
 anilistApiRouter.get('/search/studio/:keywords', async (req: Request, res: Response) => {
   try {
-    const result: Anilist.Studio = await anilistApi.searchStudio(req.params['keywords']);
+    const result: Anilist.Studio[] = await anilistApi.searchStudio(req.params['keywords']);
     res.status(200).json(result);
   } catch (err) {
     console.error(`ERROR with the request to ${req.originalUrl}`);
