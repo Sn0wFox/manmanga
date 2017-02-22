@@ -1,3 +1,4 @@
+import * as Bluebird              from 'bluebird';
 import { Component, OnInit }      from '@angular/core';
 import { ViewChild, ElementRef }  from '@angular/core';
 
@@ -9,7 +10,6 @@ import { Manga }          from '../../../../lib/interfaces/manga.interface';
 import { Character }      from '../../../../lib/interfaces/character.interface';
 import { ApiService }     from '../services/api.service';
 import { EmitterService } from '../../mmg-app/services/emitter.service';
-import Bluebird = require("bluebird");
 
 @Component({
   selector: 'mmg-search-bar',
