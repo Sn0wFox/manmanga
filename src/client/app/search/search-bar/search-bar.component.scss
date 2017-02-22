@@ -9,6 +9,12 @@ $border-radius: .25rem;
 .comp {
   position: relative;
   display: flex;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .mmg-search-field {
@@ -23,6 +29,14 @@ $border-radius: .25rem;
   border-radius: $border-radius;
   background-color: transparent;
   i {
+    position: absolute;
+    top: 50%;
+    right: $button-padding-side;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
     font-size: $icon-font-size;
     color: $color-text-secondary-dark;
   }
