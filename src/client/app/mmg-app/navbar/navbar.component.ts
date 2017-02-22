@@ -4,6 +4,7 @@ import { ElementRef }     from '@angular/core';
 import { Renderer }       from '@angular/core';
 import { OnInit }         from '@angular/core';
 import { AfterViewInit }  from '@angular/core';
+import { Router }         from '@angular/router';
 
 import { EmitterService } from '../services/emitter.service';
 
@@ -23,15 +24,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   /**
    * Whether or not the search-bar must be shown.
    */
-  protected showSearchBar: boolean = true;
+  protected showSearchBar: boolean = false;
 
   /**
    * Properly initialize component.
-   * Set a handler for SEARCH_COMPLETE event.
+   * Set a handler for SEARCH_WANTED event.
    */
   public ngOnInit(): void {
-    this.emitterService.on(this.emitterService.events.SEARCH_COMPLETE, () => {
+    this.emitterService.on(this.emitterService.events.SEARCH_WANTED, (query: string) => {
       this.showSearchBar = true;
+      this.router.navigate(['/search', query]);
+      // TODO: when the user returns to the home page, hide search-bar
     });
   }
 
@@ -48,7 +51,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
    */
   public constructor(
     private renderer: Renderer,
-    private emitterService: EmitterService) {
+    private emitterService: EmitterService,
+    private router: Router) {
     // Nothing else to do
   }
 }

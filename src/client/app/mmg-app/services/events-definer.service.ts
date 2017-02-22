@@ -4,6 +4,13 @@ import { Injectable } from '@angular/core';
 export class EventsDefinerService {
 
   /**
+   * Event fired when the search-bar triggers navigation
+   * to the response page.
+   * @type {string}
+   */
+  static readonly SEARCH_WANTED: string = "search-about";
+
+  /**
    * Event fired when a search operation is about to start.
    * @type {string}
    */
