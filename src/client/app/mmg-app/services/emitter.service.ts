@@ -1,6 +1,8 @@
 import { Injectable }   from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
+import { EventsDefinerService } from './events-definer.service';
+
 /**
  * That's just an event emitter, decorated to be a service.
  * That's really low level, so this class is basically a
@@ -75,5 +77,22 @@ export class EmitterService {
       }
       delete this.orphanEvents[key];
     }
+  }
+
+  /**
+   * Returns the service maintaining the list of available events.
+   * @returns {EventsDefinerService}
+   */
+  public get events() {
+    return EventsDefinerService;
+  }
+
+  /**
+   * Returns the service maintaining the list of available events,
+   * without any instance needed (static method).
+   * @returns {EventsDefinerService}
+   */
+  public static get events() {
+    return EventsDefinerService;
   }
 }
