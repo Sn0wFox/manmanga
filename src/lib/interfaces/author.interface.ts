@@ -6,6 +6,11 @@ export interface Author {
   name: string;
 
   /**
+   * The author's picture.
+   */
+  pictureUrl?: string;
+
+  /**
    * A snippet about the author.
    */
   abstract?: string;
