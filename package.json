@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Awesome search-engine dedicated to manga and anime",
   "scripts": {
+    "prod": "gulp all:clean && gulp all:build && gulp client:build:uglify",
     "deploy": "gulp all:clean && gulp all:build && node dist/server/main.js",
     "start": "npm run deploy",
     "test": "gulp all:test --continue"
