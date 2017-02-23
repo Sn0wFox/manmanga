@@ -1,5 +1,5 @@
-import {Author} from "./author.interface";
-import {Manga} from "./manga.interface";
+import { Author } from './author.interface';
+import { Manga }  from './manga.interface';
 
 export interface Anime {
   /**
