@@ -149,6 +149,16 @@ gulp.task('client:build:webpack', () => {
   return gulp
     .src('src/client/app/main.browser.ts')
     .pipe(gwebpack(wpconf, webpack))
+    .pipe(gulp.dest('dist/client'));
+});
+
+/**
+ * Uglify and minimize the js bundle file.
+ */
+gulp.task('client:build:uglify', () => {
+  // TODO: add progress bar.
+  return gulp
+    .src(['dist/client/*.js'])
     .pipe(guglify())
     .pipe(gulp.dest('dist/client'));
 });
