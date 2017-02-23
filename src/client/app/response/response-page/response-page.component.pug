@@ -1,5 +1,5 @@
 .response-page-wrapper
-  .row(*ngIf="results")
+  .row(*ngIf="results && !searching")
     .col.s6.m4.l2(*ngFor="let res of results")
       // NOTE: putting ngIf in the mmg-response will cause an error
       .test(*ngIf="res.manga")
@@ -10,3 +10,12 @@
         mmg-author-response([author]="res.author")
       //.test(*ngIf="res.character")
       //  mmg-character-response([character]="res.character")
+  .mmg-preloader(*ngIf="searching")
+    .preloader-wrapper.big.active
+      .spinner-layer.mmg-spinner
+        .circle-clipper.left
+          .circle
+        .gap-patch
+          .circle
+        .circle-clipper.right
+          .circle

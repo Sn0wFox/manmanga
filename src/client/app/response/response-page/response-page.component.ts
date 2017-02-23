@@ -26,6 +26,12 @@ export class ResponsePageComponent implements OnInit {
   protected results: SearchResults;
 
   /**
+   * Whether or not the component is currently performing a search.
+   * @type {boolean}
+   */
+  protected searching: boolean = false;
+
+  /**
    * Properly initialize the component.
    * Gather the query parameter and subscribe to it
    * to update content upon another query.
@@ -54,8 +60,15 @@ export class ResponsePageComponent implements OnInit {
       .subscribe((results: SearchResults) => {
         console.log("Search completed!!!");
         console.log(results);
-        this.emitterService.emit(EmitterService.events.SEARCH_COMPLETE, results, false);
+        this.searching = false;
         this.results = results;
+        if(results) {
+          this.emitterService.emit(EmitterService.events.SEARCH_COMPLETE, results, false);
+        } else {
+          // There was an error. We should do something about it
+          // TODO: display failed-component
+          this.emitterService.emit(EmitterService.events.SEARCH_FAILED)
+        }
       });
   }
 
@@ -64,6 +77,7 @@ export class ResponsePageComponent implements OnInit {
    */
   protected search(query: string): Promise<SearchResults> {
     this.emitterService.emit(EmitterService.events.SEARCH_STARTED, query, false);
+    this.searching = true;
     return this.apiService.search(query)
       .catch((err: Error) => {
         this.emitterService.emit(EmitterService.events.SEARCH_FAILED, query, false);
