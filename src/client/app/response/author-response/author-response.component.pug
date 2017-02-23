@@ -1,11 +1,19 @@
-.row
-  .col.s12.m6
-    .card.horizontal
-      .card-stacked
-        .card-content
-          span.card-title {{author.name}}
-          .abstract("*ngIf"="author.abstract") Abstract : br {{author.abstract}}
-          .birthDate("*ngIf"="author.birthDate") born {{author.birthDate}}
-          .employer("*ngIf"="author.employer") House of edition : {{author.employer}}
-        .card-action
-          a(href="#") Wikipedia link ?
+.card
+  .card.horizontal.info
+    .card-image(*ngIf="author.pictureUrl")
+      img.picture(src="{{author.pictureUrl}}" alt="The author's picture")
+    .card-stacked
+      .card-content
+        .name.card-title {{author.name | readableResource}}
+        .birthdate(*ngIf="author.birthDate") Birthday: {{author.birthDate}}
+        .employer(*ngIf="author.employer") employer: {{author.employer}}
+  .card-content
+    span.card-title.activator.grey-text.text-darken-4
+      | Abstract
+      i.material-icons.right more_vert
+    p.abstract {{author.abstract | truncate:130}}
+  .card-reveal
+    span.card-title.grey-text.text-darken-4
+      | {{author.name | readableResource}}
+      i.material-icons.right close
+    p.abstract {{author.abstract}}
