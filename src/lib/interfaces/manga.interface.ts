@@ -1,5 +1,5 @@
-import {Author} from "./author.interface";
-import {Character} from "./character.interface";
+import { Author }     from './author.interface';
+import { Character }  from './character.interface';
 
 export interface Manga {
   /**
