@@ -1,12 +1,15 @@
 import 'rxjs/add/operator/switchMap';
+import * as Promise       from 'bluebird';
+
 import { Component }      from '@angular/core';
 import { OnInit }         from '@angular/core';
-import { Input }          from '@angular/core';
 import { ActivatedRoute}  from '@angular/router';
 import { Params }         from '@angular/router';
 
 import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
 import { EmitterService } from '../../mmg-app/services/emitter.service';
+import { ApiService }     from '../../search/services/api.service';
+import {Observable, Observer} from "rxjs";
 
 @Component({
   selector: 'mmg-response-page',
@@ -16,33 +19,50 @@ import { EmitterService } from '../../mmg-app/services/emitter.service';
 export class ResponsePageComponent implements OnInit {
 
   /**
-   * The list of results to display.
-   * They can be passed as input for the component,
-   * or gathered through event.
+   * The query thanks to which content will be gathered.
    */
-    // TODO: replace that by the query and perform it here
-  @Input()
-  protected results: SearchResults;
-
   protected query: string;
 
   /**
+   * The list of results to display,
+   * gathered thanks to the query.
+   */
+  // TODO: we probably need either query or results, but not both
+  protected results: SearchResults;
+
+  /**
    * Properly initialize the component.
-   * Set a handler for the event SEARCH_COMPLETE.
+   * Gather the query parameter and subscribe to it
+   * to update content upon another query.
+   * Each time the query is updated, the event SEARCH_STARTED will be emitted
+   * and a new search performed.
+   * Once the search is performed, it will emit the SEARCH_COMPLETED event.
    */
   public ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => {
-        // NOTE: if we don't return an array, it will try to subscribe to each character of the string
-        return [params['query']];
+        return Observable.create((observer: Observer<SearchResults>) => {
+          this
+            .search(params['query'])
+            .then((res: SearchResults) => {
+              observer.next(res);
+            });
+        });
       })
-      .subscribe((query: string) => {
-        return this.query = query;
+      .subscribe((results: SearchResults) => {
+        console.log("Search completed!!!");
+        console.log(results);
+        this.emitterService.emit(EmitterService.events.SEARCH_COMPLETE, results, false);
+        this.results = results;
       });
-    // this.emitterService.on(this.emitterService.events.SEARCH_COMPLETE, (res: SearchResults) => {
-    //   this.results = res;
-    // });
-    // TODO: handle something like SEARCH_STARTED to display preloader ?
+  }
+
+  /**
+   * Performs a search thanks to ManManga API.
+   */
+  protected search(query: string): Promise<SearchResults> {
+    this.emitterService.emit(EmitterService.events.SEARCH_STARTED, query, false);
+    return this.apiService.search(query);
   }
 
   /**
@@ -50,7 +70,8 @@ export class ResponsePageComponent implements OnInit {
    */
   public constructor(
     private emitterService: EmitterService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private apiService: ApiService) {
     // Nothing to do for the moment
   }
 }
