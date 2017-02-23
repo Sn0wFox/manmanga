@@ -1,58 +1,21 @@
 .card
-  .card.horizontal
-    .card-image
-      img(src='http://lorempixel.com/225/323/nature')
+  .card.horizontal.info
+    .card-image(*ngIf="manga.coverUrl")
+      img.cover(src="{{manga.coverUrl}}" alt="The manga's cover")
     .card-stacked
       .card-content
-        span.card-title {{manga.title}}
-        .volumes("*ngIf"="manga.volumes") Volumes : {{manga.volumes}}
+        span.card-title {{manga.title | readableResource}}
+        .author("*ngIf"="manga.author") Author: {{manga.author.name | readableResource}}
+        .illustrator("*ngIf"="manga.illustrator") Illustrator: {{manga.illustrator | readableResource}}
+        .volumes("*ngIf"="manga.volumes") Volumes: {{manga.volumes}}
+        .genres("*ngIf"="manga.genres") Genres: {{manga.genres | stringifyArray}}
   .card-content
     span.card-title.activator.grey-text.text-darken-4
-      | A piece of abstract truncated...
+      | Abstract
       i.material-icons.right more_vert
-    p
-      a(href='#') This is a link
+    p.abstract {{manga.abstract | truncate:130}}
   .card-reveal
     span.card-title.grey-text.text-darken-4
-      | {{manga.title}}
+      | {{manga.title | readableResource}}
       i.material-icons.right close
-    p {{manga.abstract}}
-
-//.card.horizontal
-//  .card-image
-//    img(src='http://lorempixel.com/225/323/nature')
-//  .card-stacked
-//    .card-content
-//      span.card-title {{manga.title}}
-//      .volumes("*ngIf"="manga.volumes") Volumes : {{manga.volumes}}
-//.card
-//  .card-content
-//    span.card-title.activator.grey-text.text-darken-4
-//      | Card Title
-//      i.material-icons.right more_vert
-//    p
-//      a(href='#') This is a link
-//  .card-reveal
-//    span.card-title.grey-text.text-darken-4
-//      | Card Title
-//      i.material-icons.right close
-//    p {{manga.abstract}}
-
-//.row
-//  .col.s12.m6
-//    .card.horizontal
-//      .card-image("*ngIf"="manga.coverUrl")
-//        img(src="{{manga.coverUrl}}")
-//      .card-stacked
-//        .card-content
-//          span.card-title {{manga.title}}
-//          .author Author : {{manga.author.name}}
-//          .illustrator("*ngIf"="manga.illustrator") Illustrator : {{manga.illustrator}}
-//          .abstract("*ngIf"="manga.abstract") {{manga.abstract}}
-//          .genres("*ngIf"="manga.genres") Genres:&nbsp;
-//            span.genre("*ngFor"="let genre of manga.genres") {{genre}}&nbsp;
-//          .volumes("*ngIf"="manga.volumes") Volumes : {{manga.volumes}}
-//        .card-action
-//          a(href="#") Read it online
-
-// NOTE about abstract: it could be very long, cut it off (css or js)
+    p.abstract {{manga.abstract}}
