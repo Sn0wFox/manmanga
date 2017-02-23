@@ -1,6 +1,6 @@
 .response-page-wrapper
   .row(*ngIf="results && !searching")
-    .col.s6.m4.l2(*ngFor="let res of results")
+    .col.s12.m6.l4(*ngFor="let res of results")
       // NOTE: putting ngIf in the mmg-response will cause an error
       .test(*ngIf="res.manga")
         mmg-manga-response([manga]="res.manga")
