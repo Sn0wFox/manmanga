@@ -4,8 +4,12 @@
       // NOTE: putting ngIf in the mmg-response will cause an error
       .test(*ngIf="res.manga")
         mmg-manga-response([manga]="res.manga")
+      .test(*ngIf="res.manga && res.manga.author")
+        mmg-author-response([author]="res.manga.author")
       .test(*ngIf="res.anime")
         mmg-anime-response([anime]="res.anime")
+      .test(*ngIf="res.anime && res.anime.author")
+        mmg-author-response([author]="res.anime.author")
       .test(*ngIf="res.author")
         mmg-author-response([author]="res.author")
       //.test(*ngIf="res.character")
