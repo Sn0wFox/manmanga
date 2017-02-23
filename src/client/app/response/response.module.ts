@@ -9,6 +9,7 @@ import { ResponseRoutingModule }  from './response-routing.module';
 
 import { ReadableResourcePipe }   from './pipes/readable-resource.pipe';
 import { TruncatePipe }           from './pipes/truncate.pipe';
+import { StringifyArrayPipe }     from './pipes/stringify-array.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { TruncatePipe }           from './pipes/truncate.pipe';
     AuthorComponent,
     MangaComponent,
     ReadableResourcePipe,
-    TruncatePipe
+    TruncatePipe,
+    StringifyArrayPipe
   ],
   exports: [
     // Components here may be used in another module
