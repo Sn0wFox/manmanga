@@ -1,10 +1,13 @@
+import 'rxjs/add/operator/filter';
 import { Component }      from '@angular/core';
 import { ViewChild }      from '@angular/core';
 import { ElementRef }     from '@angular/core';
 import { Renderer }       from '@angular/core';
 import { OnInit }         from '@angular/core';
 import { AfterViewInit }  from '@angular/core';
+import { NavigationEnd }  from '@angular/router';
 import { Router }         from '@angular/router';
+import { Event }          from '@angular/router';
 
 import { EmitterService } from '../services/emitter.service';
 
@@ -31,10 +34,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
    * Set a handler for SEARCH_WANTED event.
    */
   public ngOnInit(): void {
+    // this.route.url.subscribe((segments: UrlSegment[]) => {
+    //   this.url = segments.join('');
+    //   console.log("URL CHANGED:");
+    //   console.log(this.url);
+    // });
+    this.router.events
+      .filter((event: Event) => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+        this.showSearchBar = event.urlAfterRedirects.match(/^\/search/) != null;
+        // TODO: fill search bar with search query
+      });
     this.emitterService.on(this.emitterService.events.SEARCH_WANTED, (query: string) => {
-      this.showSearchBar = true;
       this.router.navigate(['/search', query]);
-      // TODO: when the user returns to the home page, hide search-bar
     });
   }
 
