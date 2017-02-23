@@ -14,8 +14,9 @@ const del         = require('del');               // To erase some file during c
 const karma       = require('karma');             // To run server side tests
 
 // TODO: separate this config
-const tscConfig   = require('./tsconfig.json');   // Gather the options for TypeScript compiler
-const wpconf      = require('./webpack.config.js');
+const tscClientConfig   = require('./tsconfig.json');         // Gather the options for client TypeScript compiler
+const tscServerConfig   = require('./tsconfig.server.json');  // Gather the options for server TypeScript compiler
+const wpconf            = require('./webpack.config.js');
 
 
 /* BASIC TASKS */
@@ -31,7 +32,7 @@ gulp.task('lib:build:ts', () => {
   return gulp
     .src(['!src/lib/**/*.spec.ts', 'src/lib/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
     .pipe(gsourcemaps.init())
-    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscServerConfig.compilerOptions))
     .pipe(gsourcemaps.write('.'))
     .pipe(gulp.dest('dist/lib'));
 });
@@ -50,7 +51,7 @@ gulp.task('lib:clean', () => {
  */
 gulp.task('lib:test:build', () => {
   return gulp.src('src/lib/**/*.spec.ts')
-    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscServerConfig.compilerOptions))
     .pipe(gulp.dest('dist/lib'));
 });
 
@@ -90,7 +91,7 @@ gulp.task('server:build:ts', () => {
   return gulp
     .src(['!src/server/**/*.spec.ts', 'src/server/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
     .pipe(gsourcemaps.init())
-    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscServerConfig.compilerOptions))
     .pipe(gsourcemaps.write('.'))
     .pipe(gulp.dest("dist/server"));
 });
@@ -109,7 +110,7 @@ gulp.task('server:clean', () => {
  */
 gulp.task('server:test:build', () => {
   return gulp.src('src/server/**/*.spec.ts')
-    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscServerConfig.compilerOptions))
     .pipe(gulp.dest('dist/server'));
 });
 
@@ -285,7 +286,7 @@ gulp.task('log:deprecated', () => {
   return gutil.log(gutil.colors.red(
     "DEPRECATED - " +
     "The use of this script is deprecated. " +
-    "Please be aware that this may not be avaiillable in a future version."));
+    "Please be aware that this may not be available in a future version."));
 });
 
 
