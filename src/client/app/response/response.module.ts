@@ -7,6 +7,9 @@ import { AuthorComponent }        from './author-response/author-response.compon
 import { MangaComponent }         from './manga-response/manga-response.component';
 import { ResponseRoutingModule }  from './response-routing.module';
 
+import { ReadableResourcePipe }   from './pipes/readable-resource.pipe';
+import { TruncatePipe }           from './pipes/truncate.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +19,9 @@ import { ResponseRoutingModule }  from './response-routing.module';
     ResponsePageComponent,
     AnimeComponent,
     AuthorComponent,
-    MangaComponent
+    MangaComponent,
+    ReadableResourcePipe,
+    TruncatePipe
   ],
   exports: [
     // Components here may be used in another module
