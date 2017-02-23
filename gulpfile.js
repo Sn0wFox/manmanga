@@ -71,6 +71,13 @@ gulp.task('lib:test:clean', () => {
   return del('dist/lib/**/*.spec.js');
 });
 
+/**
+ * Cleans the dist/lib folder by removing it.
+ */
+gulp.task('lib:clean', () => {
+  return del('dist/lib/**/*');
+});
+
 
 /* server */
 
@@ -121,6 +128,13 @@ gulp.task('server:test:run', () => {
  */
 gulp.task('server:test:clean', () => {
   return del('dist/server/**/*.spec.js');
+});
+
+/**
+ * Cleans the dist/server folder by removing it.
+ */
+gulp.task('server:clean', () => {
+  return del('dist/server/**/*');
 });
 
 
@@ -212,6 +226,13 @@ gulp.task('client:test', (done) => {
   }, () => {
     done();   // If only passing "done", the --continue flag makes it fail
   })).start();
+});
+
+/**
+ * Cleans the dist/client folder by removing it.
+ */
+gulp.task('client:clean', () => {
+  return del('dist/client/**/*');
 });
 
 
