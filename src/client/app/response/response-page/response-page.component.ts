@@ -5,11 +5,12 @@ import { Component }      from '@angular/core';
 import { OnInit }         from '@angular/core';
 import { ActivatedRoute}  from '@angular/router';
 import { Params }         from '@angular/router';
+import { Observable }     from 'rxjs';
+import { Observer }       from 'rxjs';
 
 import { SearchResults }  from '../../../../lib/interfaces/search-result.interface';
 import { EmitterService } from '../../mmg-app/services/emitter.service';
 import { ApiService }     from '../../search/services/api.service';
-import {Observable, Observer} from "rxjs";
 
 @Component({
   selector: 'mmg-response-page',
@@ -41,11 +42,18 @@ export class ResponsePageComponent implements OnInit {
   public ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => {
+        // Looks like bluebird is not accepted as input by fromPromise(),
+        // so we build the observable by hand
         return Observable.create((observer: Observer<SearchResults>) => {
           this
             .search(params['query'])
             .then((res: SearchResults) => {
               observer.next(res);
+            })
+            .catch((err: Error) => {
+              console.log("OOPS! The search hanged up");
+              console.log(err);
+              observer.next(null);
             });
         });
       })
@@ -62,7 +70,11 @@ export class ResponsePageComponent implements OnInit {
    */
   protected search(query: string): Promise<SearchResults> {
     this.emitterService.emit(EmitterService.events.SEARCH_STARTED, query, false);
-    return this.apiService.search(query);
+    return this.apiService.search(query)
+      .catch((err: Error) => {
+        this.emitterService.emit(EmitterService.events.SEARCH_FAILED, query, false);
+        return Promise.reject(err);
+      });
   }
 
   /**

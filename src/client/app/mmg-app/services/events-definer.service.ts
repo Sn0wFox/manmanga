@@ -17,6 +17,12 @@ export class EventsDefinerService {
   static readonly SEARCH_STARTED: string = "search-go";
 
   /**
+   * Event fired when a search operation fails.
+   * @type {string}
+   */
+  static readonly SEARCH_FAILED: string = "search-oops";
+
+  /**
    * Event fired when a search operation has been completed.
    * @type {string}
    */
