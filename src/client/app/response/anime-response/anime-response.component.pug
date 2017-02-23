@@ -1,15 +1,20 @@
-.row
-  .col.s12.m6
-    .card.horizontal
-      .card-image("*ngIf"="anime.posterUrl")
-        img(src="{{anime.posterUrl}}")
-      .card-stacked
-        .card-content
-          span.card-title {{anime.title}}
-          .author("*ngIf"="anime.author") Author : {{anime.author}}
-          .abstract("*ngIf"="anime.abstract") Abstract : br {{anime.abstract}}
-          .episodes("*ngIf"="anime.episodes")  {{anime.episodes}} episodes
-          .genres("*ngIf"="anime.genres") Genres:&nbsp;
-            span.genre("*ngFor"="let genre of anime.genres") {{genre}}&nbsp;
-        .card-action
-          a(href="#") See it online
+.card
+  .card.horizontal.info
+    .card-image(*ngIf="anime.posterUrl")
+      img.poster(src="{{anime.posterUrl}}" alt="The anime's cover")
+    .card-stacked
+      .card-content
+        span.card-title {{anime.title | readableResource}}
+        .author("*ngIf"="anime.author") Author: {{anime.author.name | readableResource}}
+        .episodes("*ngIf"="anime.episodes") Episodes: {{anime.episodes}}
+        .genres("*ngIf"="anime.genres") Genres: {{anime.genres | stringifyArray}}
+  .card-content
+    span.card-title.activator.grey-text.text-darken-4
+      | Abstract
+      i.material-icons.right more_vert
+    p.abstract {{anime.abstract | truncate:130}}
+  .card-reveal
+    span.card-title.grey-text.text-darken-4
+      | {{anime.title | readableResource}}
+      i.material-icons.right close
+    p.abstract {{anime.abstract}}
