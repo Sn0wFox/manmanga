@@ -20,15 +20,9 @@ import { ApiService }     from '../../search/services/api.service';
 export class ResponsePageComponent implements OnInit {
 
   /**
-   * The query thanks to which content will be gathered.
-   */
-  protected query: string;
-
-  /**
    * The list of results to display,
    * gathered thanks to the query.
    */
-  // TODO: we probably need either query or results, but not both
   protected results: SearchResults;
 
   /**
