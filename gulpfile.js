@@ -5,10 +5,11 @@ const gutil       = require('gulp-util');         // To add some logs
 const gpug        = require('gulp-pug');          // To support pug compile
 const gsass       = require('gulp-sass');         // To support scss and sass compile
 const gjasmine    = require('gulp-jasmine');      // To build and run tests
-const typescript  = require('gulp-typescript');   // To make gulp work with TypeScript compiler
-const sourcemaps  = require('gulp-sourcemaps');   // To produce .map.js files while compiling
-const webpack     = require('webpack');           // Local webpack lib
+const guglify     = require('gulp-uglify');       // To build minimized files
+const gtypescript = require('gulp-typescript');   // To make gulp work with TypeScript compiler
+const gsourcemaps = require('gulp-sourcemaps');   // To produce .map.js files while compiling
 const gwebpack    = require('webpack-stream');    // To use webpack with gulp
+const webpack     = require('webpack');           // Local webpack lib
 const del         = require('del');               // To erase some file during cleaning tasks
 const karma       = require('karma');             // To run server side tests
 
@@ -29,10 +30,10 @@ const wpconf      = require('./webpack.config.js');
 gulp.task('lib:build:ts', () => {
   return gulp
     .src(['!src/lib/**/*.spec.ts', 'src/lib/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
-    .pipe(sourcemaps.init())
-    .pipe(typescript(tscConfig.compilerOptions))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest("dist/lib"));
+    .pipe(gsourcemaps.init())
+    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gsourcemaps.write('.'))
+    .pipe(gulp.dest('dist/lib'));
 });
 
 /**
@@ -49,7 +50,7 @@ gulp.task('lib:clean', () => {
  */
 gulp.task('lib:test:build', () => {
   return gulp.src('src/lib/**/*.spec.ts')
-    .pipe(typescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscConfig.compilerOptions))
     .pipe(gulp.dest('dist/lib'));
 });
 
@@ -81,9 +82,9 @@ gulp.task('lib:test:clean', () => {
 gulp.task('server:build:ts', () => {
   return gulp
     .src(['!src/server/**/*.spec.ts', 'src/server/**/*.ts', 'node_modules/@types/**/*.ts', 'src/custom-typings/**/*.ts'])
-    .pipe(sourcemaps.init())
-    .pipe(typescript(tscConfig.compilerOptions))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gsourcemaps.init())
+    .pipe(gtypescript(tscConfig.compilerOptions))
+    .pipe(gsourcemaps.write('.'))
     .pipe(gulp.dest("dist/server"));
 });
 
@@ -101,7 +102,7 @@ gulp.task('server:clean', () => {
  */
 gulp.task('server:test:build', () => {
   return gulp.src('src/server/**/*.spec.ts')
-    .pipe(typescript(tscConfig.compilerOptions))
+    .pipe(gtypescript(tscConfig.compilerOptions))
     .pipe(gulp.dest('dist/server'));
 });
 
@@ -134,6 +135,7 @@ gulp.task('client:build:webpack', () => {
   return gulp
     .src('src/client/app/main.browser.ts')
     .pipe(gwebpack(wpconf, webpack))
+    .pipe(guglify())
     .pipe(gulp.dest('dist/client'));
 });
 
