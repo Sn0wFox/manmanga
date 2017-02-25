@@ -13,7 +13,10 @@ export class StringifyArrayPipe implements PipeTransform {
    * @param separator The separator to use. Default to ', '.
    * @returns {string}
    */
-  public transform(array: any[], separator: string = ', '): string {
-    return array.join(separator);
+  public transform(array: any[] | any, separator: string = ', '): string {
+    if(Array.isArray(array)) {
+      return array.join(separator);
+    }
+    return array;
   }
 }
