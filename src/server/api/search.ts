@@ -117,7 +117,24 @@ export function search3(query: string): Bluebird<DBPedia.SearchResult[]> {
           })
           .catch((err: Error) => {
             console.log(err);
-            // Erf, something failed here, but that's not a problem: covers are optional
+            // Erf, something failed here, but that's not a problem: covers and genres are optional
+            // Just return the previous result
+            return dbpediaResult;
+          });
+      } else if (dbpediaResult && dbpediaResult.anime !== undefined) {
+        return aniList
+        // TODO: clean title
+          .searchAnime(DBPedia.resourceUrlToName(dbpediaResult.anime.title))
+          .then((manga: AlMg[]) => {
+            if(manga && manga[0]) {
+              dbpediaResult.anime.posterUrl = manga[0].image_url_lge;
+              dbpediaResult.anime.genres = manga[0].genres;
+            }
+            return dbpediaResult;
+          })
+          .catch((err: Error) => {
+            console.log(err);
+            // Erf, something failed here, but that's not a problem: covers and genres are optional
             // Just return the previous result
             return dbpediaResult;
           });
