@@ -4,6 +4,7 @@ nav {
   background-color: $color-primary-darker;
   z-index: 10;
   position: sticky;
+  top: 0;
 }
 
 :host /deep/ .nav-search-bar {
