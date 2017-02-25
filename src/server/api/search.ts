@@ -68,25 +68,50 @@ export async function search2 (query: string): Promise<DBPedia.SearchResult[]> {
  */
 export function search3(query: string): Bluebird<DBPedia.SearchResult[]> {
   let client = new Indexden.Client(process.env.INDEXDEN_ENDPOINT);
-  let q: string = 'title:' + query;
+  let q: string = 'docid:' + query;
   let aniList: AnilistApi = new AnilistApi();
   return client
-    .search('manmanga', {
-      q: q
+    .search('manmanga2', {
+      q: q,
+      fetch: '*',
+      fetch_categories: true
     })
     .then((res: Indexden.Search.Result) => {
       return res.results;
     })
     .map((res: Indexden.Search.Match) => {
-      return DBPedia.search(res.docid);
+      let obj: any = {};
+      if(!res.categories) {
+        // The hell is that ?
+        obj['unknown'] = res;
+        return obj;
+      }
+      switch(res.categories['type']) {
+        // TODO: update typings so we won't have to deal with this mess
+        case 'manga':
+          obj['manga'] = res;
+          obj['manga'].title = res.docid;
+          break;
+        case 'anime':
+          obj['anime'] = res;
+          obj['anime'].title = res.docid;
+          break;
+        default:
+          // The hell is that ?
+          break;
+      }
+      return <DBPedia.SearchResult>obj;
+      // TODO: update typings so we won't have to cast it like this
     })
     .map((dbpediaResult: DBPedia.SearchResult) => {
       if (dbpediaResult && dbpediaResult.manga !== undefined) {
         return aniList
+          // TODO: clean title
           .searchManga(DBPedia.resourceUrlToName(dbpediaResult.manga.title))
           .then((manga: AlMg[]) => {
             if(manga && manga[0]) {
               dbpediaResult.manga.coverUrl = manga[0].image_url_lge;
+              dbpediaResult.manga.genres = manga[0].genres;
             }
             return dbpediaResult;
           })

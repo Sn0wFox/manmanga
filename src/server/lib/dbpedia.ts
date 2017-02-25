@@ -740,7 +740,7 @@ export interface RawResultArray {
   /**
    * Manga/Anime's abstract or snippet about people
    */
-    abstract: string[];
+  abstract: string[];
 
   /**
    * To use syntax obj["key"]
