@@ -5,12 +5,12 @@
     .card-stacked
       .card-content
         .title.card-title {{manga.title | readableResource}}
-        .author(*ngIf="manga.author") Author: {{manga.author.name | readableResource}}
+        .author(*ngIf="manga.author") Author: {{manga.author | readableResource}}
         .illustrator(*ngIf="manga.illustrator") Illustrator: {{manga.illustrator | readableResource}}
         .volumes(*ngIf="manga.volumes") Volumes: {{manga.volumes}}
         .genres(*ngIf="manga.genres") Genres: {{manga.genres | stringifyArray}}
-        .publishers(*ngIf="manga.publishers") Publishers: {{manga.publishers | stringifyArray}}
-        .publication(*ngIf="manga.publicationDate") Publication: {{manga.publicationDate | stringifyArray}}
+        //.publishers(*ngIf="manga.publishers") Publishers: {{manga.publishers | stringifyArray}}
+        .publication(*ngIf="manga.publicationDate") Publication: {{manga.publicationDate}}
   .card-content
     span.card-title.activator.grey-text.text-darken-4
       | Abstract
