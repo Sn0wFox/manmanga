@@ -10,7 +10,7 @@
         .volumes(*ngIf="manga.volumes") Volumes: {{manga.volumes}}
         .genres(*ngIf="manga.genres") Genres: {{manga.genres | stringifyArray}}
         .publishers(*ngIf="manga.publisher") Publishers: {{manga.publisher  | readableResource}}
-        .magazines(*ngIf="manga.magazines") Magazines: {{manga.magazines  | stringifyArray}}
+        .magazines(*ngIf="manga.magazines") Magazines: {{manga.magazines  | stringifyArray | readableResource}}
         .publication(*ngIf="manga.publicationDate") Publication: {{manga.publicationDate}}
     .fixed-action-btn.click-to-toggle.horizontal.more
       a.btn-floating.more.halfway-fab.waves-effect.waves-light.accent
