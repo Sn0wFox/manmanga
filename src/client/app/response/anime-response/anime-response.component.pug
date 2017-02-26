@@ -5,9 +5,25 @@
     .card-stacked
       .card-content
         .title.card-title {{anime.title | readableResource}}
-        .author(*ngIf="anime.author") Author: {{anime.author.name | readableResource}}
+        .author(*ngIf="anime.author") Author: {{anime.author | readableResource}}
         .episodes(*ngIf="anime.episodes") Episodes: {{anime.episodes}}
         .genres(*ngIf="anime.genres") Genres: {{anime.genres | stringifyArray}}
+    .fixed-action-btn.click-to-toggle.horizontal.more
+      a.btn-floating.more.halfway-fab.waves-effect.waves-light.accent
+        i.material-icons add
+      ul
+        li
+          a.btn-floating.primary-color-lighter(#tooltipped='', data-tooltip="Find characters")
+            i.material-icons recent_actors
+        li
+          a.btn-floating.primary-color-lighter(#tooltipped='', data-tooltip="Find author")
+            i.material-icons person_pin
+        li
+          a.btn-floating.primary-color-lighter(#tooltipped='', data-tooltip="Find related")
+            i.material-icons search
+        li
+          a.btn-floating.primary-color-lighter(#tooltipped='', data-tooltip="Watch")
+            i.material-icons theaters
   .card-content
     span.card-title.activator.grey-text.text-darken-4
       | Abstract
