@@ -1,4 +1,3 @@
-import { Author } from './author.interface';
 import { Manga }  from './manga.interface';
 
 export interface Anime {
@@ -18,7 +17,7 @@ export interface Anime {
   /**
    * The anime's author.
    */
-  author?: Author;
+  author?: string;
 
   /**
    * An abstract of this anime.
@@ -29,6 +28,22 @@ export interface Anime {
    * The number of episodes.
    */
   episodes?: number;
+
+  /**
+   * A known director.
+   */
+  director?: string;
+
+  /**
+   * A known music composer.
+   */
+  musicComposer?: string;
+
+  /**
+   * The list of known networks
+   * thanks to which the anime is airing.
+   */
+  networks?: string[];
 
   /**
    * An URL to the poster.

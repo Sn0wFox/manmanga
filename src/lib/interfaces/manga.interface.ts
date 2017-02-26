@@ -1,4 +1,3 @@
-import { Author }     from './author.interface';
 import { Character }  from './character.interface';
 
 export interface Manga {
@@ -16,12 +15,12 @@ export interface Manga {
   /**
    * The main author's name.
    */
-  author?: Author;
+  author?: string;
 
   /**
    * The list of all known illustrators' names.
    */
-  illustrator?: string[];
+  illustrator?: string;
 
   /**
    * The list of all known characters.
@@ -45,12 +44,18 @@ export interface Manga {
   volumes?: number;
 
   /**
+   * The list of known magazines
+   * where the manga has been published.
+   */
+  magazines?: string[];
+
+  /**
    * The first publication date.
    */
   publicationDate?: string; // TODO: use Date object
 
   /**
-   * The manga's list of known publishers.
+   * A known publisher.
    */
-  publishers?: string[];
+  publisher?: string;
 }

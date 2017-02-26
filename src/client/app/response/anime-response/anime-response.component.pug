@@ -6,8 +6,11 @@
       .card-content
         .title.card-title {{anime.title | readableResource}}
         .author(*ngIf="anime.author") Author: {{anime.author | readableResource}}
+        .director(*ngIf="anime.director") Director: {{anime.director | readableResource}}
+        .music-composer(*ngIf="anime.musicComposer") Music composer: {{anime.musicComposer | readableResource}}
         .episodes(*ngIf="anime.episodes") Episodes: {{anime.episodes}}
         .genres(*ngIf="anime.genres") Genres: {{anime.genres | stringifyArray}}
+        .networks(*ngIf="anime.networks") Networks: {{anime.networks | stringifyArray}}
     .fixed-action-btn.click-to-toggle.horizontal.more
       a.btn-floating.more.halfway-fab.waves-effect.waves-light.accent
         i.material-icons add
