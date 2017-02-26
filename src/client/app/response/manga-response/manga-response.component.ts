@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { OnInit }           from '@angular/core';
+import { AfterViewInit }    from '@angular/core';
+import { Renderer }         from '@angular/core';
+import { ViewChildren }     from '@angular/core';
+import { QueryList }        from '@angular/core';
+import { ElementRef }       from '@angular/core';
 
 import { Manga }  from '../../../../lib/interfaces/manga.interface';
 
@@ -20,14 +24,35 @@ declare let $: JQueryStatic;
   templateUrl: 'manga-response.component.pug',
   styleUrls: ['manga-response.component.scss']
 })
-export class MangaComponent implements OnInit {
+export class MangaComponent implements AfterViewInit {
+  /**
+   * The manga to display.
+   */
   @Input()
-  manga: Manga;
+  protected manga: Manga;
 
-  public ngOnInit(): void {
-    $('.tooltipped').tooltip({
-      delay: 50,
-      position: 'top'
+  /**
+   * The list of tooltiped buttons.
+   */
+  @ViewChildren('tooltipped')
+  protected tooltipables: QueryList<ElementRef>;
+
+  /**
+   * Properly initializes tooltips.
+   */
+  public ngAfterViewInit(): void {
+    this.tooltipables.forEach((child: ElementRef) => {
+      this.renderer.invokeElementMethod($(child.nativeElement), 'tooltip', [{
+        delay: 50,
+        position: 'top'
+      }]);
     });
+  }
+
+  /**
+   * Instantiates component and injects needed services.
+   */
+  public constructor(private renderer: Renderer) {
+    // Nothing else to do
   }
 }
