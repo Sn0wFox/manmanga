@@ -18,6 +18,6 @@ export class ReadableResourcePipe implements PipeTransform {
 // TODO: improve that, cause that's pretty ugly
 function resourceUrlToResource(url: string): string {
   return url
-    .replace('http://dbpedia.org/resource/', '')
+    .replace(/http:\/\/dbpedia.org\/resource\//g , '')
     .replace(/_/g, ' ');
 }
