@@ -1,3 +1,5 @@
+@import '../../../common/palette';
+
 .abstract {
   text-align: justify;
 }
@@ -13,4 +15,31 @@
 .title {
   line-height: 30px !important;
   margin-bottom: 10px;
+}
+
+.fixed-action-btn.more {
+  position: absolute;
+  top: 100%;
+  transform: translateY(-50%);
+  right: 15%;
+  bottom: auto;
+  padding-top: 0;
+
+  ul {
+    bottom: 42px;
+  }
+}
+
+.fixed-action-btn.more.horizontal {
+  ul li {
+    margin-top: 0;
+  }
+}
+
+.backdrop {
+  background-color: $color-primary-darker;
+}
+
+.accent {
+  background-color: $color-accent !important;
 }

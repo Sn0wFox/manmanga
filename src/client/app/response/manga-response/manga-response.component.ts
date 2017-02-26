@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { OnInit }           from '@angular/core';
 
 import { Manga }  from '../../../../lib/interfaces/manga.interface';
+
+declare let $: JQueryStatic;
 
 // const MANGATEST: Manga = {
 //   title: 'Death Note',
@@ -17,7 +20,14 @@ import { Manga }  from '../../../../lib/interfaces/manga.interface';
   templateUrl: 'manga-response.component.pug',
   styleUrls: ['manga-response.component.scss']
 })
-export class MangaComponent {
+export class MangaComponent implements OnInit {
   @Input()
   manga: Manga;
+
+  public ngOnInit(): void {
+    $('.tooltipped').tooltip({
+      delay: 50,
+      position: 'top'
+    });
+  }
 }

@@ -11,6 +11,22 @@
         .genres(*ngIf="manga.genres") Genres: {{manga.genres | stringifyArray}}
         //.publishers(*ngIf="manga.publishers") Publishers: {{manga.publishers | stringifyArray}}
         .publication(*ngIf="manga.publicationDate") Publication: {{manga.publicationDate}}
+    .fixed-action-btn.click-to-toggle.horizontal.more
+      a.btn-floating.more.halfway-fab.waves-effect.waves-light.accent
+        i.material-icons add
+      ul
+        li
+          a.btn-floating.red.tooltipped(data-tooltip="Find characters")
+            i.material-icons recent_actors
+        li
+          a.btn-floating.red.tooltipped(data-tooltip="Find author")
+            i.material-icons person_pin
+        li
+          a.btn-floating.yellow.darken-1.tooltipped(data-tooltip="Find related")
+            i.material-icons search
+        li
+          a.btn-floating.green.tooltipped(data-tooltip="Watch")
+            i.material-icons theaters
   .card-content
     span.card-title.activator.grey-text.text-darken-4
       | Abstract
