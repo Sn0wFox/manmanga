@@ -9,6 +9,8 @@ import requestIO from "./request-io";
 // Each exported function retrieves data about an item
 // For more specific work, please refer to other functions.
 
+// TODO: EVERYTHING IS TO REWORK AND UPDATE
+
 /**
  * The base URL to access wikipedia (english).
  */
@@ -150,17 +152,17 @@ export async function search(name: string, lang: string = "en"): Promise<SearchR
   // (it's already true for mangas and animes)
   // TODO: character with the same name and other possible collisions
   // TODO: refactor the following code
-  if (res.manga && res.manga.author) {
-    const authorName: string = res.manga.author.name;
-    res.manga.author = await retrieveAuthor(authorName);
-    return res;
-  }
+  // if (res.manga && res.manga.author) {
+  //   const authorName: string = res.manga.author.name;
+  //   res.manga.author = await retrieveAuthor(authorName);
+  //   return res;
+  // }
 
-  if (res.anime && res.anime.author) {
-    const authorName: string = res.anime.author.name;
-    res.anime.author = await retrieveAuthor(authorName);
-    return res;
-  }
+  // if (res.anime && res.anime.author) {
+  //   const authorName: string = res.anime.author.name;
+  //   res.anime.author = await retrieveAuthor(authorName);
+  //   return res;
+  // }
 
   // Nothing to retrieve atm for authors
   if (res.character && res.character.creator) {
@@ -179,11 +181,11 @@ export async function search(name: string, lang: string = "en"): Promise<SearchR
  */
 export async function retrieveManga(mangaName: string): Promise<Manga> {
   const infos: Manga = await getMangaInfos(mangaName);
-  if (infos.author) {
-    const authorName: string = infos.author.name;
-    delete infos.author;
-    infos.author = await retrieveAuthor(authorName);
-  }
+  // if (infos.author) {
+  //   const authorName: string = infos.author.name;
+  //   delete infos.author;
+  //   infos.author = await retrieveAuthor(authorName);
+  // }
   return infos;
 }
 
@@ -227,14 +229,14 @@ export async function getMangaInfos(mangaName: string, lang: string = "en"): Pro
  */
 export async function retrieveAnime(animeName: string): Promise<Anime> {
   const animeInfos: Anime = await getAnimeInfos(animeName);
-  if (animeInfos.author === undefined) {
-    throw new Error("Missing author information");
-  }
-  const authorName: string = animeInfos.author.name;
-  delete animeInfos.author;
-  const anime: Anime = animeInfos;
-  anime.author = await retrieveAuthor(authorName);
-  return anime;
+  // if (animeInfos.author === undefined) {
+  //   throw new Error("Missing author information");
+  // }
+  // const authorName: string = animeInfos.author.name;
+  // delete animeInfos.author;
+  // const anime: Anime = animeInfos;
+  // anime.author = await retrieveAuthor(authorName);
+  return animeInfos;
 }
 
 /**
@@ -530,7 +532,7 @@ function sparqlToManga(sparqlResult: any): Manga {
 
   const manga: Manga = {
     title,
-    author,
+    author:author.name,
     abstract: snippet,
     volumes
   };
@@ -569,7 +571,7 @@ export function sparqlToAnime(sparqlResult: RawResultArray): Anime {
 
   const anime: Anime = {
     title,
-    author,
+    author: author.name,
     abstract: snippet
   };
 
