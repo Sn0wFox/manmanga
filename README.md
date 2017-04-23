@@ -2,7 +2,7 @@
 
 # Manmanga
 
-Awesome manga and anime dedicated search engine. This is the very beginning of Manmanga, but there should be some alpha releases soon. Stay tuned!
+Awesome manga and anime dedicated search engine. This is the very beginning of Manmanga, and despite my lack of time right now, here's a link to a _very_ [alpha release](http://manmanga.sn0wfox.com) !
 
 ## Run the project
 
