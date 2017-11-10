@@ -4,8 +4,8 @@
   "description": "Awesome search-engine dedicated to manga and anime",
   "scripts": {
     "prod": "gulp all:clean && gulp all:build && gulp client:build:uglify",
-    "deploy": "gulp all:clean && gulp all:build && node dist/server/main.js",
-    "start": "npm run deploy",
+    "deploy": "npm run prod && pm2 start dist/server/main.js --name manmanga",
+    "dev": "gulp server:build && gulp client:watch",
     "test": "gulp all:test --continue"
   },
   "contributors": [
