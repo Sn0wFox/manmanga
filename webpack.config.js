@@ -47,7 +47,7 @@ var webpackConfig = {
       },
       {
         test: /\.pug$/,
-        loader: "pug-html-loader"
+        loader: 'pug-loader'
       },
       {
         test: /\.(scss|sass)$/,
