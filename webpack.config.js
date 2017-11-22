@@ -5,7 +5,7 @@ var webpackMerge = require('webpack-merge');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main':'./src/client/app/main.browser'
+    main:'./src/client/app/main.browser'
   },
 
   output: {
@@ -47,7 +47,20 @@ var webpackConfig = {
       },
       {
         test: /\.pug$/,
-        loader: 'pug-loader'
+        loaders: [
+          {
+            loader: 'html-loader',
+            options: {
+              attrs: false
+            }
+          },
+          {
+            loader: 'pug-html-loader',
+            options: {
+              doctype: 'html'
+            }
+          }
+        ]
       },
       {
         test: /\.(scss|sass)$/,
